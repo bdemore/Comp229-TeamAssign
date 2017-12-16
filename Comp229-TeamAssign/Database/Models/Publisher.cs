@@ -7,6 +7,7 @@ namespace Comp229_TeamAssign.Database.Models
     /// </summary>
     public class Publisher : GenericModel<DecimalPrimaryKey>
     {
+        // The publisher's name.
         public string Name { get; set; }
 
         public override bool Equals(object obj)

@@ -1,5 +1,6 @@
 ﻿using Comp229_TeamAssign.Database.Models.PrimaryKeys;
 using System;
+using System.Collections.Generic;
 
 namespace Comp229_TeamAssign.Database.Models
 {
@@ -49,6 +50,9 @@ namespace Comp229_TeamAssign.Database.Models
 
         // The book's publisher.
         public Publisher Publisher { get; set; }
+
+        // The book's authors.
+        public List<Author> Authors { get; set; }
 
         public override bool Equals(object obj)
         {
