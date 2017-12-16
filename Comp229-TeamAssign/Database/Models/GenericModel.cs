@@ -1,6 +1,17 @@
-﻿namespace Comp229_TeamAssign.Database.Models
+﻿using Comp229_TeamAssign.Database.Models.PrimaryKeys;
+using System;
+
+namespace Comp229_TeamAssign.Database.Models
 {
-    public abstract class GenericModel
+    /// <summary>
+    /// Abstract class that will be the base class for all the model classes.
+    /// </summary>
+    public abstract class GenericModel<PK> where PK : GenericPrimaryKey
     {
+        // The table primary key.
+        public PK PrimaryKey { get; set; }
+
+        // The date the object was created on the database.
+        public DateTime CreateDate { get; set; }
     }
 }
