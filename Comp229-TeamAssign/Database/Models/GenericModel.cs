@@ -6,7 +6,7 @@ namespace Comp229_TeamAssign.Database.Models
     /// <summary>
     /// Abstract class that will be the base class for all the model classes.
     /// </summary>
-    public abstract class GenericModel<PK> where PK : GenericPrimaryKey
+    public abstract class GenericModel<PK> where PK : GenericPrimaryKey, new()
     {
         // The table primary key.
         public PK PrimaryKey { get; set; }
