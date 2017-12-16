@@ -54,6 +54,9 @@ namespace Comp229_TeamAssign.Database.Models
         // The book's authors.
         public List<Author> Authors { get; set; }
 
+        // The book's categories.
+        public List<Category> Categories { get; set; }
+
         public override bool Equals(object obj)
         {
             return ((null != obj) && (obj is Book) && PrimaryKey.Equals((obj as Book).PrimaryKey));
