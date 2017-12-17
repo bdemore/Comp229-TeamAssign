@@ -9,15 +9,20 @@ namespace Comp229_TeamAssign.Database.DAOs
     /// <summary>
     /// Class to manage data access to the TBUB_BOOKS table.
     /// </summary>
-    public class BookDAO : GenericDAO<DecimalPrimaryKey, Book>, IBookDAO
+    public class BookDAO : GenericDAO<DecimalPrimaryKey, Book, BookDAO>, IBookDAO
     {
+        /// <summary>
+        /// Private constructor to avoid direct instantiation.
+        /// </summary>
+        private BookDAO() { }
+
         /// <see cref="GenericDAO{PK, M}"/>
         protected override string BuildFindAllQueryString()
         {
             return "select		book.* " +
                    ",			publ.PUBLISHER_NAME " +
                    ",			publ.PUBLISHER_CREATE_DATE " +
-       ",			STUFF(( " +
+                   ",			STUFF(( " +
                    "				select		';' " +
                    "				+			cast(catg.CATEGORY_ID			as VARCHAR)	+	'|' " +
                    "				+			catg.CATEGORY_NAME							+	'|' " +
@@ -42,7 +47,7 @@ namespace Comp229_TeamAssign.Database.DAOs
                    "from		TBUB_BOOKS	book " +
                    "inner join  TBUB_PUBLISHERS     publ " +
                    "on          publ.PUBLISHER_ID = book.PUBLISHER_ID " +
-                   "order by	1 ";
+                   "order by	1";
         }
 
         /// <see cref="GenericDAO{PK, M}"/>
@@ -51,21 +56,23 @@ namespace Comp229_TeamAssign.Database.DAOs
             var book = new Book();
 
             // Fills the book fields.
-            book.PrimaryKey = new DecimalPrimaryKey(dr.GetDecimal(dr.GetOrdinal("BOOK_ISBN")));
-            book.Title = dr.GetString(dr.GetOrdinal("BOOK_TITLE"));
-            book.Description = dr.GetString(dr.GetOrdinal("BOOK_DESCRIPTION"));
-            book.PublicationDate = dr.GetDateTime(dr.GetOrdinal("BOOK_PUBLICATION_DATE"));
-            book.Edition = dr.GetDecimal(dr.GetOrdinal("BOOK_EDITION"));
-            book.IsAvailable = dr.GetBoolean(dr.GetOrdinal("BOOK_IS_AVAILABLE"));
-            book.QuantityAvailable = dr.GetDecimal(dr.GetOrdinal("BOOK_QUANTITY_AVAILABLE"));
-            book.ImageUrl01 = dr.GetString(dr.GetOrdinal("BOOK_IMG_URL_01"));
-            book.ImageUrl02 = dr.GetString(dr.GetOrdinal("BOOK_IMG_URL_02"));
-            book.ImageUrl03 = dr.GetString(dr.GetOrdinal("BOOK_IMG_URL_03"));
-            book.ImageUrl04 = dr.GetString(dr.GetOrdinal("BOOK_IMG_URL_04"));
-            book.ImageUrl05 = dr.GetString(dr.GetOrdinal("BOOK_IMG_URL_05"));
-            book.CreateDate = dr.GetDateTime(dr.GetOrdinal("BOOK_CREATE_DATE"));
-            book.RemoveDate = dr.GetDateTime(dr.GetOrdinal("BOOK_REMOVE_DATE"));
-            book.LastUpdateDate = dr.GetDateTime(dr.GetOrdinal("BOOK_LAST_UPDATE_DATE"));
+            book.PrimaryKey = new DecimalPrimaryKey(DatabaseUtils.SafeGetDecimal(dr, "BOOK_ISBN"));
+            book.Title = DatabaseUtils.SafeGetString(dr, "BOOK_TITLE");
+            book.Description = DatabaseUtils.SafeGetString(dr, "BOOK_DESCRIPTION");
+            book.PublicationDate = DatabaseUtils.SafeGetDateTime(dr, "BOOK_PUBLICATION_DATE");
+            book.Edition = DatabaseUtils.SafeGetDecimal(dr,"BOOK_EDITION");
+            book.IsAvailable = DatabaseUtils.SafeGetBoolean(dr,"BOOK_IS_AVAILABLE");
+            book.QuantityAvailable = DatabaseUtils.SafeGetDecimal(dr, "BOOK_QUANTITY_AVAILABLE");
+            book.ImageUrl01 = DatabaseUtils.SafeGetString(dr, "BOOK_IMG_URL_01");
+            book.ImageUrl02 = DatabaseUtils.SafeGetString(dr, "BOOK_IMG_URL_02");
+            book.ImageUrl03 = DatabaseUtils.SafeGetString(dr, "BOOK_IMG_URL_03");
+            book.ImageUrl04 = DatabaseUtils.SafeGetString(dr, "BOOK_IMG_URL_04");
+            book.ImageUrl05 = DatabaseUtils.SafeGetString(dr, "BOOK_IMG_URL_05");
+            book.CreateDate = DatabaseUtils.SafeGetDateTime(dr, "BOOK_CREATE_DATE");
+            book.RemoveDate = DatabaseUtils.SafeGetDateTime(dr, "BOOK_REMOVE_DATE");
+            book.LastUpdateDate = DatabaseUtils.SafeGetDateTime(dr, "BOOK_LAST_UPDATE_DATE");
+            book.Categories = new HashSet<Category>();
+            book.Authors = new HashSet<Author>();
 
             // Fills the publisher
             book.Publisher = DatabaseUtils.CreatePublisher(
@@ -75,17 +82,22 @@ namespace Comp229_TeamAssign.Database.DAOs
             );
 
             // Fills the categories.
-            book.Categories = new HashSet<Category>();
-            foreach(string category in dr.GetString(dr.GetOrdinal("CATEGORIES")).Split(new char[] { ';' }))
+            var categories = DatabaseUtils.SafeGetString(dr, "CATEGORIES");
+            if (!string.IsNullOrWhiteSpace(categories))
             {
-                book.Categories.Add(DatabaseUtils.CreateDomainModelFromStringWithSeparator<Category>(category, new char[] { '|' }));
+                foreach (string category in categories.Split(new char[] { ';' }))
+                {
+                    book.Categories.Add(DatabaseUtils.CreateDomainModelFromStringWithSeparator<Category>(category, new char[] { '|' }));
+                }
             }
 
             // Fills the authors.
-            book.Authors = new HashSet<Author>();
-            foreach (string author in dr.GetString(dr.GetOrdinal("AUTHORS")).Split(new char[] { ';' }))
-            {
-                book.Authors.Add(DatabaseUtils.CreateDomainModelFromStringWithSeparator<Author>(author, new char[] { '|' }));
+            var authors = DatabaseUtils.SafeGetString(dr, "AUTHORS");
+            if (!string.IsNullOrWhiteSpace(authors)) {
+                foreach (string author in authors.Split(new char[] { ';' }))
+                {
+                    book.Authors.Add(DatabaseUtils.CreateDomainModelFromStringWithSeparator<Author>(author, new char[] { '|' }));
+                }
             }
 
             return book;

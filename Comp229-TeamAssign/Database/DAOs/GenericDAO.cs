@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data.Common;
 using System.Data.SqlClient;
+using System.Web.Configuration;
 using Comp229_TeamAssign.Database.Exceptions;
 using Comp229_TeamAssign.Database.Models;
 using Comp229_TeamAssign.Database.Models.PrimaryKeys;
+using Comp229_TeamAssign.Patterns;
 
 namespace Comp229_TeamAssign.Database.DAOs
 {
@@ -14,7 +15,7 @@ namespace Comp229_TeamAssign.Database.DAOs
     /// </summary>
     /// <typeparam name="PK">The Model's Primary Key class</typeparam>
     /// <typeparam name="M">The Model class</typeparam>
-    public abstract class GenericDAO<PK, M> : IGenericDAO<PK, M>
+    public abstract class GenericDAO<PK, M, TS> : Singleton<TS>, IGenericDAO<PK, M>
         where PK : GenericPrimaryKey
         where M : GenericModel<PK>, new()
     {
@@ -25,18 +26,18 @@ namespace Comp229_TeamAssign.Database.DAOs
         protected const string CNN_TYPE_SQLSVR = "SQLSVR";
 
         // The database connection string for SQL Server.
-        protected static string SQL_CNN_STR = ConfigurationManager.ConnectionStrings["SqlCnnStr"].ConnectionString;
+        protected string sqlCnnStr = WebConfigurationManager.ConnectionStrings["SqlCnnStr"].ConnectionString;
 
         // The database connection string for Oracle.
-        protected static string ORA_CNN_STR = ConfigurationManager.ConnectionStrings["OraCnnStr"].ConnectionString;
+        protected string oraCnnStr = WebConfigurationManager.ConnectionStrings["OraCnnStr"].ConnectionString;
 
         // The database type to connect to: SQLSVR for SQL Server or ORACLE for Oracle databases.
-        protected static string DB_TYPE = ConfigurationManager.ConnectionStrings["DbType"].ConnectionString;
+        protected string dbType = WebConfigurationManager.AppSettings["DbType"];
 
         /// <see cref="IGenericDAO{PK, M}"/>
         public List<M> FindAll()
         {
-            if (CNN_TYPE_SQLSVR == DB_TYPE)
+            if (CNN_TYPE_SQLSVR == dbType)
             {
                 return FindAllSqlServer(BuildFindAllQueryString());
             }
@@ -77,7 +78,7 @@ namespace Comp229_TeamAssign.Database.DAOs
 
             try
             {
-                using (SqlConnection cnn = new SqlConnection(SQL_CNN_STR))
+                using (SqlConnection cnn = new SqlConnection(sqlCnnStr))
                 {
                     using (SqlCommand cmd = new SqlCommand(queryString, cnn))
                     {
@@ -87,7 +88,7 @@ namespace Comp229_TeamAssign.Database.DAOs
                         {
                             if (reader.HasRows)
                             {
-                                while (reader.NextResult())
+                                while (reader.Read())
                                 {
                                     objectList.Add(CreateObjectFromDataReader(reader));
                                 }

@@ -12,6 +12,6 @@ namespace Comp229_TeamAssign.Database.Models
         public PK PrimaryKey { get; set; }
 
         // The date the object was created on the database.
-        public DateTime CreateDate { get; set; }
+        public DateTime? CreateDate { get; set; }
     }
 }

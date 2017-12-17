@@ -1,6 +1,7 @@
 ﻿using Comp229_TeamAssign.Database.Models;
 using Comp229_TeamAssign.Database.Models.PrimaryKeys;
 using System;
+using System.Data.Common;
 using System.Globalization;
 
 namespace Comp229_TeamAssign.Utils
@@ -46,9 +47,73 @@ namespace Comp229_TeamAssign.Utils
 
             domainModel.PrimaryKey = new DecimalPrimaryKey(decimal.Parse(domainModelFields[0]));
             domainModel.Name = domainModelFields[1];
-            domainModel.CreateDate = DateTime.ParseExact(domainModelFields[2], "yyyy-MM-dd HH:mm:ss.ffffff", CultureInfo.InvariantCulture);
+            domainModel.CreateDate = DateTime.ParseExact(domainModelFields[2], "yyyy-MM-dd HH:mm:ss.fffffff", CultureInfo.InvariantCulture);
 
             return domainModel;
+        }
+
+        /// <summary>
+        /// Safely returns a decinal even when the field has a null value on the database.
+        /// </summary>
+        /// <param name="dr">The data reader</param>
+        /// <param name="columnName">The database column name</param>
+        /// <returns></returns>
+        public static decimal SafeGetDecimal(DbDataReader dr, string columnName)
+        {
+            if (!dr.IsDBNull(dr.GetOrdinal(columnName)))
+            {
+                return dr.GetDecimal(dr.GetOrdinal(columnName));
+            }
+
+            return default(decimal);
+        }
+
+        /// <summary>
+        /// Safely returns a string even when the field has a null value on the database.
+        /// </summary>
+        /// <param name="dr">The data reader</param>
+        /// <param name="columnName">The database column name</param>
+        /// <returns></returns>
+        public static string SafeGetString(DbDataReader dr, string columnName)
+        {
+            if (!dr.IsDBNull(dr.GetOrdinal(columnName)))
+            {
+                return dr.GetString(dr.GetOrdinal(columnName));
+            }
+
+            return "";
+        }
+
+        /// <summary>
+        /// Safely returns a boolean even when the field has a null value on the database.
+        /// </summary>
+        /// <param name="dr">The data reader</param>
+        /// <param name="columnName">The database column name</param>
+        /// <returns></returns>
+        public static bool SafeGetBoolean(DbDataReader dr, string columnName)
+        {
+            if (!dr.IsDBNull(dr.GetOrdinal(columnName)))
+            {
+                return dr.GetBoolean(dr.GetOrdinal(columnName));
+            }
+
+            return default(bool);
+        }
+
+        /// <summary>
+        /// Safely returns a DateTime even when the field has a null value on the database.
+        /// </summary>
+        /// <param name="dr">The data reader</param>
+        /// <param name="columnName">The database column name</param>
+        /// <returns></returns>
+        public static DateTime? SafeGetDateTime(DbDataReader dr, string columnName)
+        {
+            if (!dr.IsDBNull(dr.GetOrdinal(columnName)))
+            {
+                return dr.GetDateTime(dr.GetOrdinal(columnName));
+            }
+
+            return null;
         }
     }
 }

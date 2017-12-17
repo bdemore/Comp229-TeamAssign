@@ -16,7 +16,7 @@ namespace Comp229_TeamAssign.Database.Models
         public string Description { get; set; }
 
         // The book publication date.
-        public DateTime PublicationDate { get; set; }
+        public DateTime? PublicationDate { get; set; }
 
         // The book edition.
         public decimal Edition { get; set; }
@@ -43,10 +43,10 @@ namespace Comp229_TeamAssign.Database.Models
         public string ImageUrl05 { get; set; }
 
         // The date when the book was removed from the renting shelf
-        public DateTime RemoveDate { get; set; }
+        public DateTime? RemoveDate { get; set; }
 
         // The last time the book was updated.
-        public DateTime LastUpdateDate { get; set; }
+        public DateTime? LastUpdateDate { get; set; }
 
         // The book's publisher.
         public Publisher Publisher { get; set; }
