@@ -10,7 +10,7 @@ namespace Comp229_TeamAssign.Database.DAOs
     /// <typeparam name="PK">The Model's Primary Key class</typeparam>
     /// <typeparam name="M">The Model class</typeparam>
     public interface IGenericDAO<PK, M>
-        where PK : GenericPrimaryKey, new()
+        where PK : GenericPrimaryKey
         where M : GenericModel<PK>, new()
     {
         /// <summary>

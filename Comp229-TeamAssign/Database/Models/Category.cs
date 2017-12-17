@@ -5,11 +5,8 @@ namespace Comp229_TeamAssign.Database.Models
     /// <summary>
     /// Class that will be used to store a category returned from the database table TBUB_CATEGORIES.
     /// </summary>
-    public class Category : GenericModel<DecimalPrimaryKey>
+    public class Category : DomainModel<DecimalPrimaryKey>
     {
-        // The category's name.
-        public string Name { get; set; }
-
         public override bool Equals(object obj)
         {
             return ((null != obj) && (obj is Category) && PrimaryKey.Equals((obj as Category).PrimaryKey));

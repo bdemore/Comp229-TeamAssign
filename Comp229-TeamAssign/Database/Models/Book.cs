@@ -52,10 +52,10 @@ namespace Comp229_TeamAssign.Database.Models
         public Publisher Publisher { get; set; }
 
         // The book's authors.
-        public List<Author> Authors { get; set; }
+        public HashSet<Author> Authors { get; set; }
 
         // The book's categories.
-        public List<Category> Categories { get; set; }
+        public HashSet<Category> Categories { get; set; }
 
         public override bool Equals(object obj)
         {

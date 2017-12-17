@@ -6,7 +6,16 @@
     public class DecimalPrimaryKey : GenericPrimaryKey
     {
         // The decimal key value.
-        public decimal Key { get; set; }
+        public decimal Key { get; }
+
+        /// <summary>
+        /// Creates a new instance of a DecimalPrimaryKey with ghe given key.
+        /// </summary>
+        /// <param name="key">The key to be set.</param>
+        public DecimalPrimaryKey(decimal key)
+        {
+            Key = key;
+        }
 
         public override bool Equals(object obj)
         {

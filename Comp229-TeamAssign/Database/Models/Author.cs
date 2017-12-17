@@ -5,11 +5,8 @@ namespace Comp229_TeamAssign.Database.Models
     /// <summary>
     /// Class that will be used to store an author returned from the database table TBUB_AUTHORS.
     /// </summary>
-    public class Author : GenericModel<DecimalPrimaryKey>
+    public class Author : DomainModel<DecimalPrimaryKey>
     {
-        // The author's name.
-        public string Name { get; set; }
-
         public override bool Equals(object obj)
         {
             return ((null != obj) && (obj is Author) && PrimaryKey.Equals((obj as Author).PrimaryKey));
