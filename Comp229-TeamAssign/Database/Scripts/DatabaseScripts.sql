@@ -91,7 +91,7 @@ BEGIN
 			VARCHAR(128)
 			NOT NULL
 	,	BOOK_DESCRIPTION
-			VARCHAR(512)
+			VARCHAR(2048)
 	,	BOOK_PUBLICATION_DATE
 			DATE
 			NOT NULL
@@ -186,3 +186,39 @@ BEGIN
 	CREATE INDEX IX_BOOKS__PUBLISHER_ID ON dbo.TBUB_BOOKS(PUBLISHER_ID)
 END
 GO
+
+/*
+ * Inserting Data.
+ */
+INSERT INTO TBUB_CATEGORIES(CATEGORY_NAME) VALUES(N'Fantasy')
+INSERT INTO TBUB_CATEGORIES(CATEGORY_NAME) VALUES(N'Magic')
+
+INSERT INTO TBUB_AUTHORS(AUTHOR_NAME) VALUES(N'J. K. Rowling')
+
+INSERT INTO TBUB_PUBLISHERS(PUBLISHER_NAME) VALUES(N'Bloomsbury Children''s Books')
+
+INSERT INTO TBUB_BOOKS(BOOK_ISBN, BOOK_TITLE, BOOK_DESCRIPTION, BOOK_PUBLICATION_DATE, BOOK_EDITION, BOOK_IS_AVAILABLE, BOOK_QUANTITY_AVAILABLE, BOOK_IMG_URL_01, PUBLISHER_ID)
+VALUES(
+	9781408845646, N'Harry Potter and the Philosopher''s Stone',
+	N'Prepare to be spellbound by Jim Kay''s dazzling depiction of the wizarding world and much loved characters in this full-colour illustrated hardback edition of the nation''s favourite children''s book – Harry Potter and the Philosopher''s Stone. Brimming with rich detail and humour that perfectly complements J.K. Rowling''s timeless classic, Jim Kay''s glorious illustrations will captivate fans and new readers alike.',
+	'2015-10-06', 1, 1, 10, N'https://images-na.ssl-images-amazon.com/images/I/51sTwK7kBxL._AA218_.jpg', 1)
+INSERT INTO TBUB_BOOKS(BOOK_ISBN, BOOK_TITLE, BOOK_DESCRIPTION, BOOK_PUBLICATION_DATE, BOOK_EDITION, BOOK_IS_AVAILABLE, BOOK_QUANTITY_AVAILABLE, BOOK_IMG_URL_01, PUBLISHER_ID)
+VALUES(
+	9781408845653, N'Harry Potter and the Chamber of Secrets',
+	N'Prepare to be spellbound by Jim Kay''s dazzling full-colour illustrations in this stunning new edition of J.K. Rowling''s Harry Potter and the Chamber of Secrets. Breathtaking scenes, dark themes and unforgettable characters await inside this fully illustrated edition. With paint, pencil and pixels, award-winning illustrator Jim Kay conjures the wizarding world as we have never seen it before. Fizzing with magic and brimming with humour, this inspired reimagining will captivate fans and new readers alike, as Harry and his friends, now in their second year at Hogwarts School of Witchcraft and Wizardry, seek out a legendary chamber and the deadly secret that lies at its heart.',
+	'2016-10-04', 1, 1, 10, N'https://images-na.ssl-images-amazon.com/images/I/61+abdOC5gL._AA218_.jpg', 1)
+INSERT INTO TBUB_BOOKS(BOOK_ISBN, BOOK_TITLE, BOOK_DESCRIPTION, BOOK_PUBLICATION_DATE, BOOK_EDITION, BOOK_IS_AVAILABLE, BOOK_QUANTITY_AVAILABLE, BOOK_IMG_URL_01, PUBLISHER_ID)
+VALUES(
+	9781408845660, N'Harry Potter and the Prisoner of Azkaban',
+	N'An extraordinary creative achievement by an extraordinary talent, Jim Kay''s inspired reimagining of J.K. Rowling''s classic series has captured a devoted following worldwide. This stunning new fully illustrated edition of Harry Potter and the Prisoner of Azkaban brings more breathtaking scenes and unforgettable characters – including Sirius Black, Remus Lupin and Professor Trelawney. With paint, pencil and pixels, Kay conjures the wizarding world as we have never seen it before. Fizzing with magic and brimming with humour, this full-colour edition will captivate fans and new readers alike as Harry, now in his third year at Hogwarts School of Witchcraft and Wizardry, faces Dementors, death omens and, of course, danger.',
+	'2017-10-03', 1, 1, 10, N'https://images-na.ssl-images-amazon.com/images/I/617HC+dtBOL._AA218_.jpg', 1)
+INSERT INTO TBUB_BOOKS(BOOK_ISBN, BOOK_TITLE, BOOK_DESCRIPTION, BOOK_PUBLICATION_DATE, BOOK_EDITION, BOOK_IS_AVAILABLE, BOOK_QUANTITY_AVAILABLE, BOOK_IMG_URL_01, PUBLISHER_ID)
+VALUES(
+	9781408890769, N'Harry Potter - A History of Magic: The Book of the Exhibition',
+	N'Harry Potter: A History of Magic is the official book of the exhibition, a once-in-a-lifetime collaboration between Bloomsbury, J.K. Rowling and the brilliant curators of the British Library. It promises to take readers on a fascinating journey through the subjects studied at Hogwarts School of Witchcraft and Wizardry - from Alchemy and Potions classes through to Herbology and Care of Magical Creatures.',
+	'2017-10-20', 1, 1, 10, N'https://images-na.ssl-images-amazon.com/images/I/61Lo-+FBs+L._AA218_.jpg', 1)
+
+INSERT INTO TBUB_BOOKS_AUTHORS(BOOK_ISBN, AUTHOR_ID) VALUES(9781408845646, 1)
+
+INSERT INTO TBUB_BOOKS_CATEGORIES(BOOK_ISBN, CATEGORY_ID) VALUES(9781408845646, 1)
+INSERT INTO TBUB_BOOKS_CATEGORIES(BOOK_ISBN, CATEGORY_ID) VALUES(9781408845646, 2)

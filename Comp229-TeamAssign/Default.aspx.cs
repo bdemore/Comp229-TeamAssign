@@ -13,7 +13,11 @@ namespace Comp229_TeamAssign
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            List<Book> books = bookController.RetrieveAllBooks();
+            if (!IsPostBack)
+            {
+                BookRepeater.DataSource = bookController.RetrieveAllBooks();
+                BookRepeater.DataBind();
+            }
         }
     }
 }

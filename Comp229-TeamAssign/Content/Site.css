@@ -77,3 +77,26 @@ textarea {
     height: 40px;
     border-radius: 5px;
 }
+
+.ub-container {
+    padding-top: 30px;
+}
+
+.ub-boook-name {
+    font-size: 15px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.ub-boook-name > a {
+    color: #61705a;
+}
+
+.ub-book-image {
+    text-align: center;
+}
+
+.ub-book-image-small {
+    width: 218px;
+    height: 218px;
+}

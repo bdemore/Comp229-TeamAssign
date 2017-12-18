@@ -13,12 +13,12 @@ namespace Comp229_TeamAssign {
     public partial class _Default {
         
         /// <summary>
-        /// ModelRepeater control.
+        /// BookRepeater control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater ModelRepeater;
+        protected global::System.Web.UI.WebControls.Repeater BookRepeater;
     }
 }
