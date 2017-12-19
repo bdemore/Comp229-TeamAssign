@@ -39,11 +39,38 @@ textarea {
     .body-content {
         padding: 0;
     }
+
+    .ub-boook-name {
+        font-size: 17px;
+        margin-top: 10px;
+        text-align: center;
+        height: 50px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .ub-boook-name {
+        text-align: left;
+        margin-left: -50px;
+        font-size: 20px;
+    }
+
+    .ub-book-image {
+        float: left;
+        height: 100%;
+        display: block;
+        overflow: auto;
+    }
+
+    .ub-book-content {
+        padding-bottom: 30px;
+    }
 }
 
 .navbar-inverse {
     background-color: #9f887d;
     border-color: #9f887d;
+    box-shadow: 0 10px 10px #454545;
 }
 
 .navbar-inverse .navbar-brand {
@@ -82,14 +109,16 @@ textarea {
     padding-top: 30px;
 }
 
-.ub-boook-name {
-    font-size: 15px;
-    margin-top: 10px;
-    text-align: center;
+.ub-book-content {
+    display: block;
+    overflow: auto;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #e5e5e5;
 }
 
 .ub-boook-name > a {
     color: #61705a;
+    font-weight: bold;
 }
 
 .ub-book-image {

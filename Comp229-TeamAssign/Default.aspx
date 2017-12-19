@@ -5,7 +5,7 @@
         <%-- Model list --%>
         <asp:Repeater ID="BookRepeater" runat="server">
             <ItemTemplate>
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                     <div class="ub-book-outer-border">
                         <div class="ub-book-content">
                             <div class="ub-book-image">
