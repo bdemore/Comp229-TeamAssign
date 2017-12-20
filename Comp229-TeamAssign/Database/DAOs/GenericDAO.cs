@@ -7,6 +7,7 @@ using Comp229_TeamAssign.Database.Exceptions;
 using Comp229_TeamAssign.Database.Models;
 using Comp229_TeamAssign.Database.Models.PrimaryKeys;
 using Comp229_TeamAssign.Patterns;
+using Comp229_TeamAssign.Utils;
 
 namespace Comp229_TeamAssign.Database.DAOs
 {
@@ -19,25 +20,16 @@ namespace Comp229_TeamAssign.Database.DAOs
         where PK : GenericPrimaryKey
         where M : GenericModel<PK>, new()
     {
-        // Oracle connection type.
-        protected const string CNN_TYPE_ORACLE = "ORACLE";
-
         // SQL Server connection type.
         protected const string CNN_TYPE_SQLSVR = "SQLSVR";
 
         // The database connection string for SQL Server.
-        protected string sqlCnnStr = WebConfigurationManager.ConnectionStrings["SqlCnnStr"].ConnectionString;
-
-        // The database connection string for Oracle.
-        protected string oraCnnStr = WebConfigurationManager.ConnectionStrings["OraCnnStr"].ConnectionString;
-
-        // The database type to connect to: SQLSVR for SQL Server or ORACLE for Oracle databases.
-        protected string dbType = WebConfigurationManager.AppSettings["DbType"];
+        protected string cnnStr = DatabaseUtils.CNN_STR;
 
         /// <see cref="IGenericDAO{PK, M}"/>
         public List<M> FindAll()
         {
-            if (CNN_TYPE_SQLSVR == dbType)
+            if (CNN_TYPE_SQLSVR == DatabaseUtils.DB_CFG)
             {
                 return FindAllSqlServer(BuildFindAllQueryString());
             }
@@ -78,7 +70,7 @@ namespace Comp229_TeamAssign.Database.DAOs
 
             try
             {
-                using (SqlConnection cnn = new SqlConnection(sqlCnnStr))
+                using (SqlConnection cnn = new SqlConnection(cnnStr))
                 {
                     using (SqlCommand cmd = new SqlCommand(queryString, cnn))
                     {

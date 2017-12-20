@@ -11,6 +11,9 @@ namespace Comp229_TeamAssign.Utils
     /// </summary>
     public class DatabaseUtils
     {
+        public static string CNN_STR = "";
+        public static string DB_CFG = "";
+
         /// <summary>
         /// Ceates a Publisher with the given parameters.
         /// </summary>
