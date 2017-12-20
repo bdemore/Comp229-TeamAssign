@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Data.SqlClient;
-using System.Web.Configuration;
 using Comp229_TeamAssign.Database.Exceptions;
 using Comp229_TeamAssign.Database.Models;
 using Comp229_TeamAssign.Database.Models.PrimaryKeys;

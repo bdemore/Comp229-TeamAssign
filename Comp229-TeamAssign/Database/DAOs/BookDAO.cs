@@ -17,9 +17,7 @@ namespace Comp229_TeamAssign.Database.DAOs
         private BookDAO() { }
 
         /// <see cref="GenericDAO{PK, M}"/>
-        protected override string BuildFindAllQueryString()
-        {
-            return "select		book.* " +
+        protected override string BuildFindAllQueryString() => "select		book.* " +
                    ",			publ.PUBLISHER_NAME " +
                    ",			publ.PUBLISHER_CREATE_DATE " +
                    ",			STUFF(( " +
@@ -48,38 +46,39 @@ namespace Comp229_TeamAssign.Database.DAOs
                    "inner join  TBUB_PUBLISHERS     publ " +
                    "on          publ.PUBLISHER_ID = book.PUBLISHER_ID " +
                    "order by	1";
-        }
 
         /// <see cref="GenericDAO{PK, M}"/>
         protected override Book CreateObjectFromDataReader(DbDataReader dr)
         {
-            var book = new Book();
+            var book = new Book
+            {
 
-            // Fills the book fields.
-            book.PrimaryKey = new DecimalPrimaryKey(DatabaseUtils.SafeGetDecimal(dr, "BOOK_ISBN"));
-            book.Title = DatabaseUtils.SafeGetString(dr, "BOOK_TITLE");
-            book.Description = DatabaseUtils.SafeGetString(dr, "BOOK_DESCRIPTION");
-            book.PublicationDate = DatabaseUtils.SafeGetDateTime(dr, "BOOK_PUBLICATION_DATE");
-            book.Edition = DatabaseUtils.SafeGetDecimal(dr,"BOOK_EDITION");
-            book.IsAvailable = DatabaseUtils.SafeGetBoolean(dr,"BOOK_IS_AVAILABLE");
-            book.QuantityAvailable = DatabaseUtils.SafeGetDecimal(dr, "BOOK_QUANTITY_AVAILABLE");
-            book.ImageUrl01 = DatabaseUtils.SafeGetString(dr, "BOOK_IMG_URL_01");
-            book.ImageUrl02 = DatabaseUtils.SafeGetString(dr, "BOOK_IMG_URL_02");
-            book.ImageUrl03 = DatabaseUtils.SafeGetString(dr, "BOOK_IMG_URL_03");
-            book.ImageUrl04 = DatabaseUtils.SafeGetString(dr, "BOOK_IMG_URL_04");
-            book.ImageUrl05 = DatabaseUtils.SafeGetString(dr, "BOOK_IMG_URL_05");
-            book.CreateDate = DatabaseUtils.SafeGetDateTime(dr, "BOOK_CREATE_DATE");
-            book.RemoveDate = DatabaseUtils.SafeGetDateTime(dr, "BOOK_REMOVE_DATE");
-            book.LastUpdateDate = DatabaseUtils.SafeGetDateTime(dr, "BOOK_LAST_UPDATE_DATE");
-            book.Categories = new HashSet<Category>();
-            book.Authors = new HashSet<Author>();
+                // Fills the book fields.
+                PrimaryKey = new DecimalPrimaryKey(DatabaseUtils.SafeGetDecimal(dr, "BOOK_ISBN")),
+                Title = DatabaseUtils.SafeGetString(dr, "BOOK_TITLE"),
+                Description = DatabaseUtils.SafeGetString(dr, "BOOK_DESCRIPTION"),
+                PublicationDate = DatabaseUtils.SafeGetDateTime(dr, "BOOK_PUBLICATION_DATE"),
+                Edition = DatabaseUtils.SafeGetDecimal(dr, "BOOK_EDITION"),
+                IsAvailable = DatabaseUtils.SafeGetBoolean(dr, "BOOK_IS_AVAILABLE"),
+                QuantityAvailable = DatabaseUtils.SafeGetDecimal(dr, "BOOK_QUANTITY_AVAILABLE"),
+                ImageUrl01 = DatabaseUtils.SafeGetString(dr, "BOOK_IMG_URL_01"),
+                ImageUrl02 = DatabaseUtils.SafeGetString(dr, "BOOK_IMG_URL_02"),
+                ImageUrl03 = DatabaseUtils.SafeGetString(dr, "BOOK_IMG_URL_03"),
+                ImageUrl04 = DatabaseUtils.SafeGetString(dr, "BOOK_IMG_URL_04"),
+                ImageUrl05 = DatabaseUtils.SafeGetString(dr, "BOOK_IMG_URL_05"),
+                CreateDate = DatabaseUtils.SafeGetDateTime(dr, "BOOK_CREATE_DATE"),
+                RemoveDate = DatabaseUtils.SafeGetDateTime(dr, "BOOK_REMOVE_DATE"),
+                LastUpdateDate = DatabaseUtils.SafeGetDateTime(dr, "BOOK_LAST_UPDATE_DATE"),
+                Categories = new HashSet<Category>(),
+                Authors = new HashSet<Author>(),
 
-            // Fills the publisher
-            book.Publisher = DatabaseUtils.CreatePublisher(
-                dr.GetDecimal(dr.GetOrdinal("PUBLISHER_ID")),
-                dr.GetString(dr.GetOrdinal("PUBLISHER_NAME")),
-                dr.GetDateTime(dr.GetOrdinal("PUBLISHER_CREATE_DATE"))
-            );
+                // Fills the publisher
+                Publisher = DatabaseUtils.CreatePublisher(
+                    dr.GetDecimal(dr.GetOrdinal("PUBLISHER_ID")),
+                    dr.GetString(dr.GetOrdinal("PUBLISHER_NAME")),
+                    dr.GetDateTime(dr.GetOrdinal("PUBLISHER_CREATE_DATE"))
+                )
+            };
 
             // Fills the categories.
             var categories = DatabaseUtils.SafeGetString(dr, "CATEGORIES");
