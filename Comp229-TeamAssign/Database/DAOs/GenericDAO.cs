@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Data.SqlClient;
-using System.Web.Configuration;
 using Comp229_TeamAssign.Database.Exceptions;
 using Comp229_TeamAssign.Database.Models;
 using Comp229_TeamAssign.Database.Models.PrimaryKeys;
 using Comp229_TeamAssign.Patterns;
 using Comp229_TeamAssign.Utils;
+using Oracle.ManagedDataAccess.Client;
 
 namespace Comp229_TeamAssign.Database.DAOs
 {
@@ -31,12 +31,12 @@ namespace Comp229_TeamAssign.Database.DAOs
         {
             if (CNN_TYPE_SQLSVR == DatabaseUtils.DB_CFG)
             {
-                return FindAllSqlServer(BuildFindAllQueryString());
+                return FindByQuerySqlServer(BuildFindAllSqlServerQueryString());
             }
-
-            /// TODO: Implement oracle connections.
-
-            return new List<M>();
+            else
+            {
+                return FindByQueryOracle(BuildFindAllOracleQueryString());
+            }
         }
 
         /// <see cref="IGenericDAO{PK, M}"/>
@@ -50,7 +50,14 @@ namespace Comp229_TeamAssign.Database.DAOs
         /// for the FindAll method.
         /// </summary>
         /// <returns>The build query string.</returns>
-        protected abstract string BuildFindAllQueryString();
+        protected abstract string BuildFindAllSqlServerQueryString();
+
+        /// <summary>
+        /// Method that will be implemented by chikd classes in order to provide the correct query
+        /// for the FindAll method.
+        /// </summary>
+        /// <returns>The build query string.</returns>
+        protected abstract string BuildFindAllOracleQueryString();
 
         /// <summary>
         /// Method that will crete an object using the given SqlDataReader
@@ -64,7 +71,7 @@ namespace Comp229_TeamAssign.Database.DAOs
         /// <param name="queryString">The query to be executed</param>
         /// <exception cref="DatabaseException">If an error occurs when trying to retrieve the data from the database.</exception>
         /// <returns>The list of objects populated with the database data.</returns>
-        private List<M> FindAllSqlServer(string queryString)
+        private List<M> FindByQuerySqlServer(string queryString)
         {
             var objectList = new List<M>();
 
@@ -77,6 +84,45 @@ namespace Comp229_TeamAssign.Database.DAOs
                         cnn.Open();
 
                         using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.HasRows)
+                            {
+                                while (reader.Read())
+                                {
+                                    objectList.Add(CreateObjectFromDataReader(reader));
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new DatabaseException("An error has occurred when searching for records on a SQL Server database.", ex);
+            }
+
+            return objectList;
+        }
+
+        /// <summary>
+        /// Finds all the database objects for the given type using SQL Server database.
+        /// </summary>
+        /// <param name="queryString">The query to be executed</param>
+        /// <exception cref="DatabaseException">If an error occurs when trying to retrieve the data from the database.</exception>
+        /// <returns>The list of objects populated with the database data.</returns>
+        private List<M> FindByQueryOracle(string queryString)
+        {
+            var objectList = new List<M>();
+
+            try
+            {
+                using (OracleConnection cnn = new OracleConnection(cnnStr))
+                {
+                    using (OracleCommand cmd = new OracleCommand(queryString, cnn))
+                    {
+                        cnn.Open();
+
+                        using (OracleDataReader reader = cmd.ExecuteReader())
                         {
                             if (reader.HasRows)
                             {
