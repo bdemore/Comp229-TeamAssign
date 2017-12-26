@@ -21,5 +21,11 @@ namespace Comp229_TeamAssign.Controllers
         {
             return bookDAO.FindAll();
         }
+
+        /// <see cref="IBookController"/>
+        public List<Book> RetrivedBooksByFilter(string filterType, string filterValue)
+        {
+            return bookDAO.FindBooksByFilter(filterType, filterValue);
+        }
     }
 }
