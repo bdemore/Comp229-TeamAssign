@@ -9,7 +9,7 @@ namespace Comp229_TeamAssign
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (null != Session["LoggedUser"])
+            if (null == Session["LoggedUser"])
             {
                 Session["LoggedUser"] = userController.Login("rjdsilv@gmail.com", "Teste1234");
             }
