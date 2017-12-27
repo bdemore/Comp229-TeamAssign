@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
 using Comp229_TeamAssign.Database.Exceptions;
@@ -40,6 +41,19 @@ namespace Comp229_TeamAssign.Database.DAOs
         public List<M> FindPaged(QueryPage queryPage)
         {
             throw new NotImplementedException();
+        }
+
+        /// <see cref="IGenericDAO{PK, M}"/>
+        public void ExecuteProcedure(string procedureName, params QueryParameter[] parameters)
+        {
+            if (!DatabaseUtils.IsOracle())
+            {
+                ExecuteSqlServerProcedure(procedureName, parameters);
+            }
+            else
+            {
+                ExecuteSOracleProcedure(procedureName, parameters);
+            }
         }
 
         /// <summary>
@@ -147,6 +161,48 @@ namespace Comp229_TeamAssign.Database.DAOs
         }
 
         /// <summary>
+        /// Executes the given procedure on the SQL Server database
+        /// </summary>
+        /// <param name="procedureName">The procedure to be executed.</param>
+        /// <param name="parameters">The parameters to be used.</param>
+        protected void ExecuteSqlServerProcedure(string procedureName, params QueryParameter[] parameters)
+        {
+            try
+            {
+                using (SqlConnection cnn = new SqlConnection(cnnStr))
+                {
+                    using (SqlCommand cmd = cnn.CreateCommand())
+                    {
+                        cmd.CommandText = procedureName;
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        // Set the parameters into the stored procedure.
+                        foreach (QueryParameter parameter in parameters)
+                        {
+                            DatabaseUtils.AddCommandParameter(cmd, parameter);
+                        }
+
+                        cnn.Open();
+                        cmd.ExecuteNonQuery();
+
+                        // Retrieve the parameter values.
+                        foreach (QueryParameter parameter in parameters)
+                        {
+                            if (parameter.IsInputOutput() || parameter.IsOutput())
+                            {
+                                parameter.Value = cmd.Parameters[parameter.Name].Value;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new DatabaseException(string.Format("An error has occurred when executing the procedure {0} on a SQL Server database.", procedureName), ex);
+            }
+        }
+
+        /// <summary>
         /// Finds the database objects determined by the query string passed using Oracle database.
         /// </summary>
         /// <param name="queryString">The query to be executed</param>
@@ -227,6 +283,48 @@ namespace Comp229_TeamAssign.Database.DAOs
             }
 
             return objectList;
+        }
+
+        /// <summary>
+        /// Executes the given procedure on the SQL Server database
+        /// </summary>
+        /// <param name="procedureName">The procedure to be executed.</param>
+        /// <param name="parameters">The parameters to be used.</param>
+        protected void ExecuteSOracleProcedure(string procedureName, params QueryParameter[] parameters)
+        {
+            try
+            {
+                using (OracleConnection cnn = new OracleConnection(cnnStr))
+                {
+                    using (OracleCommand cmd = cnn.CreateCommand())
+                    {
+                        cmd.CommandText = procedureName;
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        // Set the parameters into the stored procedure.
+                        foreach (QueryParameter parameter in parameters)
+                        {
+                            DatabaseUtils.AddCommandParameter(cmd, parameter);
+                        }
+
+                        cnn.Open();
+                        cmd.ExecuteNonQuery();
+
+                        // Retrieve the parameter values.
+                        foreach (QueryParameter parameter in parameters)
+                        {
+                            if (parameter.IsInputOutput() || parameter.IsOutput())
+                            {
+                                parameter.Value = cmd.Parameters[parameter.Name].Value;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new DatabaseException(string.Format("An error has occurred when executing the procedure {0} on a SQL Server database.", procedureName), ex);
+            }
         }
     }
 }
