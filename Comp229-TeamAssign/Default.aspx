@@ -9,7 +9,7 @@
                     <div class="ub-book-outer-border">
                         <div class="ub-book-content">
                             <div class="ub-book-image">
-                                <a href="BookDetail.aspx?model=<%# Eval("PrimaryKey.Key") %>">
+                                <a href="BookDetail.aspx?isbn=<%# Eval("PrimaryKey.Key") %>">
                                     <asp:Image ID="BookImage"
                                         AlternateText='<%# Eval("Title") %>'
                                         ImageUrl='<%# Eval("ImageUrl01") %>'
