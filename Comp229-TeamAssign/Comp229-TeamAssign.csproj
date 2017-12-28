@@ -49,6 +49,7 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Oracle.ManagedDataAccess, Version=4.122.1.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -127,10 +128,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="BookDetail.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
-    <Content Include="Database\Scripts\DatabaseScripts.sql" />
+    <Content Include="Database\Scripts\OracleScript.sql" />
+    <Content Include="Database\Scripts\SQLServerScript.sql" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -145,6 +148,8 @@
     <Content Include="Documents\COMP-229_TeamProject.vpp" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Images\logo.png" />
+    <Content Include="Login.aspx" />
+    <Content Include="Register.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -182,12 +187,24 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="BookDetail.aspx.cs">
+      <DependentUpon>BookDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BookDetail.aspx.designer.cs">
+      <DependentUpon>BookDetail.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\BookController.cs" />
     <Compile Include="Controllers\GenericController.cs" />
     <Compile Include="Controllers\IBookController.cs" />
+    <Compile Include="Controllers\IUserController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Database\DAOs\BookDAO.cs" />
     <Compile Include="Database\DAOs\IBookDAO.cs" />
     <Compile Include="Database\DAOs\IGenericDAO.cs" />
+    <Compile Include="Database\DAOs\IUserDAO.cs" />
+    <Compile Include="Database\DAOs\UserDAO.cs" />
+    <Compile Include="Database\DbType.cs" />
     <Compile Include="Database\Exceptions\DatabaseException.cs" />
     <Compile Include="Database\Models\Book.cs" />
     <Compile Include="Database\DAOs\GenericDAO.cs" />
@@ -198,8 +215,24 @@
     <Compile Include="Database\Models\PrimaryKeys\DecimalPrimaryKey.cs" />
     <Compile Include="Database\Models\PrimaryKeys\GenericPrimaryKey.cs" />
     <Compile Include="Database\Models\Publisher.cs" />
+    <Compile Include="Database\Models\User.cs" />
     <Compile Include="Database\QueryPage.cs" />
+    <Compile Include="Database\QueryParameter.cs" />
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Patterns\Singleton.cs" />
+    <Compile Include="Register.aspx.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Register.aspx.designer.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Utils\DatabaseUtils.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>

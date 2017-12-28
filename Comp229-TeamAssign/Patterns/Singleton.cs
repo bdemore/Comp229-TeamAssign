@@ -1,5 +1,4 @@
-﻿using System;
-using System.Reflection;
+﻿using Comp229_TeamAssign.Utils;
 
 namespace Comp229_TeamAssign.Patterns
 {
@@ -20,9 +19,7 @@ namespace Comp229_TeamAssign.Patterns
             // Using reflection to instantiate the child singleton class.
             if (null == INSTANCE)
             {
-                Type type = typeof(T);
-                ConstructorInfo[] constructors = type.GetConstructors(BindingFlags.Instance | BindingFlags.NonPublic);
-                INSTANCE = (T) constructors[0].Invoke(new object[] { });
+                INSTANCE = ReflectionUtils.ConstructDefaultNonPublic<T>();
             }
 
             return INSTANCE;

@@ -1,7 +1,11 @@
-﻿using Comp229_TeamAssign.Database.Models;
+﻿using Comp229_TeamAssign.Database;
+using Comp229_TeamAssign.Database.Models;
 using Comp229_TeamAssign.Database.Models.PrimaryKeys;
+using Oracle.ManagedDataAccess.Client;
 using System;
+using System.Data;
 using System.Data.Common;
+using System.Data.SqlClient;
 using System.Globalization;
 
 namespace Comp229_TeamAssign.Utils
@@ -97,7 +101,14 @@ namespace Comp229_TeamAssign.Utils
         {
             if (!dr.IsDBNull(dr.GetOrdinal(columnName)))
             {
-                return dr.GetBoolean(dr.GetOrdinal(columnName));
+                if (IsOracle())
+                {
+                    return SafeGetDecimal(dr, columnName) == 1 ? true : false;
+                }
+                else
+                {
+                    return dr.GetBoolean(dr.GetOrdinal(columnName));
+                }
             }
 
             return default(bool);
@@ -117,6 +128,162 @@ namespace Comp229_TeamAssign.Utils
             }
 
             return null;
+        }
+
+        /// <summary>
+        /// Checks if the configuration is set to Oracle server.
+        /// </summary>
+        /// <returns>true if the configuration is set to Oracle.</returns>
+        public static bool IsOracle()
+        {
+            return "ORACLE" == DB_CFG;
+        }
+
+        /// <summary>
+        /// Adds a parameter to the SQL Server command passed as parameter.
+        /// </summary>
+        /// <param name="command">The command to be used.</param>
+        /// <param name="parameter">The parameter to be passed.</param>
+        public static void AddCommandParameter(SqlCommand command, QueryParameter parameter)
+        {
+            if (null != parameter)
+            {
+                if (parameter.IsInput())
+                {
+                    if (null != parameter.Value)
+                    {
+                        if (parameter.DbSize > 0)
+                        {
+                            command.Parameters.Add(parameter.Name, DbTypeToSqlDbType(parameter.DbType), parameter.DbSize).Value = parameter.Value;
+                        }
+                        else
+                        {
+                            command.Parameters.AddWithValue(parameter.Name, parameter.Value);
+                        }
+                    }
+                    else
+                    {
+                        command.Parameters.AddWithValue(parameter.Name, DBNull.Value);
+                    }
+                }
+                else if (parameter.IsInputOutput() || parameter.IsOutput())
+                {
+                    if (parameter.DbType == Database.DbType.DECIMAL)
+                    {
+                        command.Parameters.Add(parameter.Name, DbTypeToSqlDbType(parameter.DbType)).Precision = (byte)parameter.DbSize;
+                        command.Parameters[parameter.Name].Direction = parameter.Direction;
+                    }
+                    else
+                    {
+                        command.Parameters.Add(parameter.Name, DbTypeToSqlDbType(parameter.DbType), parameter.DbSize);
+                        command.Parameters[parameter.Name].Direction = parameter.Direction;
+                    }
+
+                }
+            }
+        }
+
+        /// <summary>
+        /// Adds a parameter to the Oracle command passed as parameter.
+        /// </summary>
+        /// <param name="command">The command to be used.</param>
+        /// <param name="parameter">The parameter to be passed.</param>
+        public static void AddCommandParameter(OracleCommand command, QueryParameter parameter)
+        {
+            if (null != parameter)
+            {
+                if (parameter.IsInput())
+                {
+                    if (null != parameter.Value)
+                    {
+                        if (parameter.DbSize > 0)
+                        {
+                            command.Parameters.Add(parameter.Name, DbTypeToOracleDbType(parameter.DbType), parameter.DbSize).Value = parameter.Value;
+                        }
+                        else
+                        {
+                            command.Parameters.Add(parameter.Name, parameter.Value);
+                        }
+                    }
+                    else
+                    {
+                        command.Parameters.Add(parameter.Name, DBNull.Value);
+                    }
+                }
+                else if (parameter.IsInputOutput() || parameter.IsOutput())
+                {
+                    if (parameter.DbType == Database.DbType.DECIMAL)
+                    {
+                        command.Parameters.Add(parameter.Name, DbTypeToOracleDbType(parameter.DbType), parameter.Direction).Precision = (byte)parameter.DbSize;
+                    }
+                    else
+                    {
+                        command.Parameters.Add(parameter.Name, DbTypeToOracleDbType(parameter.DbType), parameter.DbSize).Direction = parameter.Direction;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Converts the given DbType to a SqlDbType.
+        /// </summary>
+        /// <param name="dbType">The type to be converted.</param>
+        /// <returns>The converted Type.</returns>
+        private static SqlDbType DbTypeToSqlDbType(Database.DbType dbType)
+        {
+            switch (dbType)
+            {
+                case Database.DbType.BIT:
+                    return SqlDbType.Bit;
+
+                case Database.DbType.CHAR:
+                    return SqlDbType.Char;
+
+                case Database.DbType.DATE:
+                    return SqlDbType.Date;
+
+                case Database.DbType.DATETIME:
+                    return SqlDbType.DateTime2;
+
+                case Database.DbType.DECIMAL:
+                    return SqlDbType.Decimal;
+
+                case Database.DbType.VARCHAR:
+                    return SqlDbType.VarChar;
+            }
+
+            return SqlDbType.VarChar;
+        }
+
+        /// <summary>
+        /// Converts the given DbType to an OracleDbType.
+        /// </summary>
+        /// <param name="dbType">The type to be converted.</param>
+        /// <returns>The converted Type.</returns>
+        private static OracleDbType DbTypeToOracleDbType(Database.DbType dbType)
+        {
+            switch (dbType)
+            {
+                case Database.DbType.BIT:
+                    return OracleDbType.Decimal;
+
+                case Database.DbType.CHAR:
+                    return OracleDbType.Char;
+
+                case Database.DbType.DATE:
+                    return OracleDbType.Date;
+
+                case Database.DbType.DATETIME:
+                    return OracleDbType.TimeStamp;
+
+                case Database.DbType.DECIMAL:
+                    return OracleDbType.Decimal;
+
+                case Database.DbType.VARCHAR:
+                    return OracleDbType.Varchar2;
+            }
+
+            return OracleDbType.Varchar2;
         }
     }
 }

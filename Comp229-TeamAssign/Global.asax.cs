@@ -19,7 +19,8 @@ namespace Comp229_TeamAssign
             DatabaseUtils.DB_CFG = WebConfigurationManager.AppSettings["DbType"];
 
             // SQL Server configured as the database.
-            if (DatabaseUtils.DB_CFG == "SQLSVR") {
+            if (DatabaseUtils.DB_CFG == "SQLSVR")
+            {
                 // SQL Server Developer version.
                 var cnnStr = WebConfigurationManager.ConnectionStrings["SqlCnnStr"].ConnectionString;
 
@@ -44,6 +45,11 @@ namespace Comp229_TeamAssign
                 // Let's get the Oracle String.
                 DatabaseUtils.CNN_STR = WebConfigurationManager.ConnectionStrings["OraCnnStr"].ConnectionString;
             }
+        }
+
+        void Session_End(object sender, EventArgs e)
+        {
+            Session["LoggedUser"] = null;
         }
     }
 }
