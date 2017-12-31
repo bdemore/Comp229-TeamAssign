@@ -216,3 +216,43 @@ footer {
 .ub-book-signin-register ul {
     float: right;
 }
+
+.register-panel {
+    border: 1px solid #004250;
+    border-radius: 8px;
+    text-align: center;
+    padding: 5px;
+    display: block;
+    overflow: auto;
+    margin-top: 25px;
+}
+
+.register-panel-title {
+    background-color: #9f887d;
+    border-radius: 8px;
+    padding: 5px;
+    font-size: 25px;
+    font-weight: bolder;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.register-input {
+    border: 1px solid;
+    border-radius: 5px;
+    width: 100%;
+    padding: 10px;
+    background-color: #98af8c;
+    color: rgb(100, 57, 57);
+    font-weight: bolder;
+    font-size: 18px;
+    margin-top: 15px;
+    margin-left: 250px;
+}
+
+.register-input-container {
+    display: block;
+    overflow: auto;
+    margin-bottom: 20px;
+    text-align: center;
+}
