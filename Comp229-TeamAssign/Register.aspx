@@ -101,6 +101,14 @@
                     OnClick="RegisterButton_Click"
                     ValidationGroup="RegistrationValidationGroup"
                     runat="server" />
+        </div>
+        <div class="col-sm-12 register-input-container" style="height: 50px;">
+                <asp:Button ID="ClearButton"
+                    Text="Clear"
+                    CssClass="register-input-button"
+                    OnClick="ClearPageTextBoxes"
+                    ValidationGroup="RegistrationValidationGroup"
+                    runat="server" />
         </div>--%>
      </asp:Panel>
 

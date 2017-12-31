@@ -14,5 +14,10 @@ namespace Comp229_TeamAssign
                 Session["LoggedUser"] = userController.Login("rjdsilv@gmail.com", "Teste1234");
             }
         }
+
+        protected void LoginButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
