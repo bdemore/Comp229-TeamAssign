@@ -7,6 +7,7 @@
             <div><%= message %></div>
         </asp:Panel>
     </div>
+
     <br />
 
     <div class="col-sm-12">

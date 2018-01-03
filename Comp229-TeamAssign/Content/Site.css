@@ -218,11 +218,13 @@ footer {
 }
 
 .ub-book-button-holder {
+    margin-top: 25px;
     text-align: center;
 }
 
 .ub-book-button-holder .ub-book-button {
     width: 95%;
+    height: 40px;
 }
 
 .register-panel {

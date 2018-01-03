@@ -7,7 +7,9 @@
             <div><%= message %></div>
         </asp:Panel>
     </div>
+
     <br />
+
     <div class="col-sm-12">
         <div class="col-sm-3">&nbsp</div>
         <div class="col-sm-6 register-input-container">
