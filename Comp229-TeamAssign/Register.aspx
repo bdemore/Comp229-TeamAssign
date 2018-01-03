@@ -1,6 +1,14 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Register.aspx.cs" Inherits="Comp229_TeamAssign.Register" %>
 
 <asp:Content ID="RegisterContent" ContentPlaceHolderID="MainContent" runat="server">
+    <div class="container body-content">
+        <%-- Error Panel --%>
+        <asp:Panel ID="ErrorPanel" runat="server" CssClass="register-error-message-hidden">
+            <div><%= message %></div>
+        </asp:Panel>
+    </div>
+    <br />
+
     <div class="col-sm-12">
         <div class="col-sm-3">&nbsp</div>
         <div class="col-sm-6 register-input-container">
@@ -31,7 +39,7 @@
                     runat="server"
                     placeholder="Last Name" />
             </div>
-            <div class="col-sm-7 register-validator-message-container">
+            <div class="col-sm-12 register-validator-message-container">
                 <asp:RequiredFieldValidator ID="LastNameTextBox_RFV"
                     ControlToValidate="LastNameTextBox"
                     Display="Dynamic"
@@ -47,7 +55,7 @@
                     runat="server"
                     placeholder="Email" />
             </div>
-            <div class="col-sm-7 register-validator-message-container">
+            <div class="col-sm-12 register-validator-message-container">
                 <asp:RequiredFieldValidator ID="EmailTextBox_RFV"
                     ControlToValidate="EmailTextBox"
                     Display="Dynamic"
@@ -65,12 +73,12 @@
             <div class="col-sm-12">
                 <asp:TextBox ID="PasswordTextBox"
                     ToolTip="Enter a password here"
-                    TextMode="SingleLine"
+                    TextMode="Password"
                     CssClass="register-input"
                     runat="server"
                     placeholder="Password" />
             </div>
-            <div class="col-sm-7 register-validator-message-container">
+            <div class="col-sm-12 register-validator-message-container">
                 <asp:RequiredFieldValidator ID="PasswordTextBox_RFV"
                     ControlToValidate="PasswordTextBox"
                     Display="Dynamic"
@@ -88,12 +96,12 @@
             <div class="col-sm-12">
                 <asp:TextBox ID="ConfirmPasswordTextBox"
                     ToolTip="Confirm your password here"
-                    TextMode="SingleLine"
+                    TextMode="Password"
                     CssClass="register-input"
                     runat="server"
                     placeholder="Confirm Password" />
             </div>
-            <div class="col-sm-7 register-validator-message-container">
+            <div class="col-sm-12 register-validator-message-container">
                 <asp:RequiredFieldValidator ID="ConfirmPasswordTextBox_RFV"
                     ControlToValidate="PasswordTextBox"
                     Display="Dynamic"
@@ -109,7 +117,7 @@
             </div>
             <div class="col-sm-12 register-button-container">
                 <div class="col-sm-6">
-                    <asp:Button ID="RegisterButton" Text="Register" CssClass="ub-book-button" runat="server" />
+                    <asp:Button ID="RegisterButton" Text="Register" CssClass="ub-book-button" runat="server" OnClick="RegisterButton_Click1" />
                 </div>
                 <div class="col-sm-6">
                     <asp:Button ID="CancelButton" Text="Cancel" CssClass="ub-book-button" runat="server" />

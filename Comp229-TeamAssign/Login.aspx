@@ -15,6 +15,14 @@
                     runat="server"
                     placeholder="Email" />
             </div>
+            <div class="col-sm-12 register-validator-message-container">
+                <asp:RequiredFieldValidator ID="EmailTextBox_RFV"
+                    ControlToValidate="EmailTextBox"
+                    Display="Dynamic"
+                    ErrorMessage="Email is required"
+                    CssClass="register-input-error"
+                    runat="server" />
+            </div>
             <div class="col-sm-12">
                 <asp:TextBox ID="PasswordLoginTextBox"
                     ToolTip="Enter your password here"
@@ -22,6 +30,14 @@
                     CssClass="register-input"
                     runat="server"
                     placeholder="Password" />
+            </div>
+            <div class="col-sm-12 register-validator-message-container">
+                <asp:RequiredFieldValidator ID="PasswordTextBox_RFV"
+                    ControlToValidate="PasswordTextBox"
+                    Display="Dynamic"
+                    ErrorMessage="Password is required"
+                    CssClass="register-input-error"
+                    runat="server" />
             </div>
             <div class="col-sm-12 register-button-container">
                 <div class="col-sm-6">

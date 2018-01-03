@@ -31,6 +31,15 @@ namespace Comp229_TeamAssign {
         protected global::System.Web.UI.WebControls.TextBox EmailLoginTextBox;
         
         /// <summary>
+        /// EmailTextBox_RFV control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator EmailTextBox_RFV;
+        
+        /// <summary>
         /// PasswordLoginTextBox control.
         /// </summary>
         /// <remarks>
@@ -38,6 +47,15 @@ namespace Comp229_TeamAssign {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox PasswordLoginTextBox;
+        
+        /// <summary>
+        /// PasswordTextBox_RFV control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator PasswordTextBox_RFV;
         
         /// <summary>
         /// LoginButon control.

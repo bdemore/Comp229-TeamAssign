@@ -7,6 +7,8 @@ namespace Comp229_TeamAssign
 {
     public partial class Register : System.Web.UI.Page
     {
+        protected string message = "";
+
         // The User Controller.
         private IUserController userController = UserController.GetInstance();
 
@@ -39,5 +41,26 @@ namespace Comp229_TeamAssign
                 }
             }
         }
+
+        protected void RegisterButton_Click1(object sender, EventArgs e)
+        {
+            Session["LoggedUser"] = userController.Register(FirstNameTextBox.Text, PasswordTextBox.Text, FirstNameTextBox.Text, LastNameTextBox.Text);
+
+            if (null == Session["LoggedUser"])
+            {
+                ShowErrorMessage("User already registered");
+            }
+        }
+
+        /// <summary>
+        /// Shows to the user any unexpecte error that may occur during the database communication.
+        /// </summary>
+        /// <param name="message">The error message to be shown.</param>
+        private void ShowErrorMessage(string message)
+        {
+            this.message = string.Format("<hr/><b>{0}</b><hr/>", message);
+            ErrorPanel.CssClass = "register-error-message-hidden";
+        }
+
     }
 }
