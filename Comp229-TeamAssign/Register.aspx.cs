@@ -15,6 +15,7 @@ namespace Comp229_TeamAssign
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            FirstNameTextBox.Focus();
         }
 
         /// <summary>
@@ -22,7 +23,7 @@ namespace Comp229_TeamAssign
         /// </summary>
         /// <param name="sender">The event sender</param>
         /// <param name="e">The event arguments.</param>
-        protected void RegisterButton_Click1(object sender, EventArgs e)
+        protected void RegisterButton_Click(object sender, EventArgs e)
         {
             Session["LoggedUser"] = userController.Register(EmailTextBox.Text, PasswordTextBox.Text, FirstNameTextBox.Text, LastNameTextBox.Text);
 
@@ -54,7 +55,7 @@ namespace Comp229_TeamAssign
         private void ShowErrorMessage(string message)
         {
             this.message = string.Format("<hr/><b>{0}</b><hr/>", message);
-            ErrorPanel.CssClass = "register-error-message-hidden";
+            ErrorPanel.CssClass = "register-error-message";
         }
 
         /// <summary>

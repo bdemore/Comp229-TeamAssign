@@ -8,8 +8,6 @@
         </asp:Panel>
     </div>
 
-    <br />
-
     <div class="col-sm-12">
         <div class="col-sm-3">&nbsp</div>
         <div class="col-sm-6 register-input-container">
@@ -118,7 +116,7 @@
             </div>
             <div class="col-sm-12 register-button-container">
                 <div class="col-sm-6">
-                    <asp:Button ID="RegisterButton" Text="Register" CssClass="ub-book-button" runat="server" OnClick="RegisterButton_Click1" />
+                    <asp:Button ID="RegisterButton" Text="Register" CssClass="ub-book-button" runat="server" OnClick="RegisterButton_Click" />
                 </div>
                 <div class="col-sm-6">
                     <asp:Button ID="CancelButton" Text="Cancel" CssClass="ub-book-button" runat="server" OnClick="CancelButton_Click" CausesValidation="false" />

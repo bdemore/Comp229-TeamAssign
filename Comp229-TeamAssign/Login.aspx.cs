@@ -54,7 +54,7 @@ namespace Comp229_TeamAssign
         private void ShowErrorMessage(string message)
         {
             this.message = string.Format("<hr/><b>{0}</b><hr/>", message);
-            ErrorPanel.CssClass = "register-error-message-hidden";
+            ErrorPanel.CssClass = "register-error-message";
         }
 
         /// <summary>

@@ -17,6 +17,10 @@ footer {
     width: 100%;
 }
 
+hr {
+    border-top: 1px solid #84563f;
+}
+
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
 .body-content {
@@ -290,6 +294,12 @@ footer {
     padding-left: 25px;
 }
 
-.register-success-message-hidden {
+.register-error-message-hidden {
     display: none;
+}
+
+.register-error-message {
+    display: block;
+    text-align: center;
+    color: #aa0000;
 }
