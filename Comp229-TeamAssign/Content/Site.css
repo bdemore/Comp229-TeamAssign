@@ -234,7 +234,6 @@ footer {
     font-size: 25px;
     font-weight: bolder;
     color: white;
-    margin-bottom: 20px;
 }
 
 .register-input {
@@ -247,12 +246,26 @@ footer {
     font-weight: bolder;
     font-size: 18px;
     margin-top: 15px;
-    margin-left: 250px;
 }
 
 .register-input-container {
     display: block;
     overflow: auto;
+    margin-top: 30px;
     margin-bottom: 20px;
     text-align: center;
+    background-color: #ffffff;
+    box-shadow: 5px 5px 8px;
+    padding: 10px 10px 25px 10px;
+    border-radius: 8px;
+}
+
+.register-button-container {
+    margin-top: 40px;
+}
+
+.register-button-container .ub-book-button {
+    width: 90%;
+    padding: 5px 0 5px 0;
+    height: 40px;
 }

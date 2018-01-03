@@ -5,47 +5,47 @@
         <asp:Label Text="Registration Form" runat="server" />
     </div>
     <div class="register-input-container">
-                    <div class="col-sm-7">
-                        <asp:TextBox ID="FirstNameTextBox"
-                            ToolTip="Enter your first name here"
-                            TextMode="SingleLine"
-                            CssClass="register-input"
-                            runat="server"
-                            placeholder="First Name" />
-                    </div>
+        <div class="col-sm-7">
+            <asp:TextBox ID="FirstNameTextBox"
+                ToolTip="Enter your first name here"
+                TextMode="SingleLine"
+                CssClass="register-input"
+                runat="server"
+                placeholder="First Name" />
+        </div>
         
-                    <div class="col-sm-7">
-                        <asp:TextBox ID="LastNameTextBox1"
-                            ToolTip="Enter your last name here"
-                            TextMode="SingleLine"
-                            CssClass="register-input"
-                            runat="server"
-                            placeholder="Last Name" />
-                    </div>
-                    <div class="col-sm-7">
-                        <asp:TextBox ID="EmailTextBox"
-                            ToolTip="Enter your email here"
-                            TextMode="SingleLine"
-                            CssClass="register-input"
-                            runat="server"
-                            placeholder="Email" />
-                    </div>
-                    <div class="col-sm-7">
-                        <asp:TextBox ID="PasswordTextBox"
-                            ToolTip="Enter a password here"
-                            TextMode="SingleLine"
-                            CssClass="register-input"
-                            runat="server"
-                            placeholder="Password" />
-                    </div>
-                    <div class="col-sm-7">
-                        <asp:TextBox ID="ConfirmPasswordTextBox"
-                            ToolTip="Confirm your password here"
-                            TextMode="SingleLine"
-                            CssClass="register-input"
-                            runat="server"
-                            placeholder="Confirm Password" />
-                    </div>
+        <div class="col-sm-7">
+            <asp:TextBox ID="LastNameTextBox"
+                ToolTip="Enter your last name here"
+                TextMode="SingleLine"
+                CssClass="register-input"
+                runat="server"
+                placeholder="Last Name" />
+        </div>
+        <div class="col-sm-7">
+            <asp:TextBox ID="EmailTextBox"
+                ToolTip="Enter your email here"
+                TextMode="SingleLine"
+                CssClass="register-input"
+                runat="server"
+                placeholder="Email" />
+        </div>
+        <div class="col-sm-7">
+            <asp:TextBox ID="PasswordTextBox"
+                ToolTip="Enter a password here"
+                TextMode="SingleLine"
+                CssClass="register-input"
+                runat="server"
+                placeholder="Password" />
+        </div>
+        <div class="col-sm-7">
+            <asp:TextBox ID="ConfirmPasswordTextBox"
+                ToolTip="Confirm your password here"
+                TextMode="SingleLine"
+                CssClass="register-input"
+                runat="server"
+                placeholder="Confirm Password" />
+        </div>
 
                     <%--  Validation for inputs --%>
                     <%--<div class="col-sm-7 register-validator-message-container">

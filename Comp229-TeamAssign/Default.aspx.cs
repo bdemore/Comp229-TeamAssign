@@ -16,15 +16,22 @@ namespace Comp229_TeamAssign
         /// <param name="e">The event arguments.</param>
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            try
             {
-                if ((null == Session["BookList"]) || ("true" == Request.QueryString["showAll"]))
+                if (!IsPostBack)
                 {
-                    Session["BookList"] = bookController.RetrieveAllBooks();
+                    if ((null == Session["BookList"]) || ("true" == Request.QueryString["showAll"]))
+                    {
+                        Session["BookList"] = bookController.RetrieveAllBooks();
+                    }
                 }
-            }
 
-            ShowBooks();
+                ShowBooks();
+            }
+            catch (Exception)
+            {
+
+            }
         }
 
         /// <summary>
@@ -34,6 +41,11 @@ namespace Comp229_TeamAssign
         {
             BookRepeater.DataSource = Session["BookList"];
             BookRepeater.DataBind();
+        }
+
+        protected void ReserveButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

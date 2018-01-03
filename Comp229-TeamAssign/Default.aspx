@@ -23,6 +23,17 @@
                                     <asp:Label ID="BookLabel" Text='<%# Eval("Title") %>' runat="server" /></span>
                                 </a>
                             </div>
+                            <% if (null != Session["LoggedUser"]) { %>
+                                <div class="ub-book-button-holder">
+                                    <asp:Button 
+                                        ID="ReserveButton"
+                                        Text="Reserve"
+                                        CommandArgument='<%# Eval("PrimaryKey.Key") %>'
+                                        CssClass="ub-book-button"
+                                        OnClick="ReserveButton_Click"
+                                        runat="server" />
+                                </div>
+                            <% } %>
                         </div>
                     </div>
                 </div>

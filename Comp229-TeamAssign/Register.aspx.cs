@@ -12,15 +12,17 @@ namespace Comp229_TeamAssign
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (null == Session["LoggedUser"])
-            {
-                Session["LoggedUser"] = userController.Register("bruno@demore.com", "Teste1234", "Bruno", "Demore");
-            }
+            Session["LoggedUser"] = userController.Register("bruno@demore.com", "Teste1234", "Bruno", "Demore");
         }
 
         protected void RegisterButton_Click(object sender, EventArgs e)
         {
+            Session["LoggedUser"] = userController.Register("bruno@demore.com", "Teste1234", "Bruno", "Demore");
 
+            if (null == Session["LoggedUser"])
+            {
+                // Show error
+            }
         }
 
         private void ClearPageTextBoxes(Control control)
