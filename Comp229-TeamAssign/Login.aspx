@@ -33,13 +33,6 @@
             </div>
         </div>
         <div class="col-sm-3">&nbsp</div>
-        <%--<div class="col-sm-12 register-input-container" style="height: 50px;">
-                <asp:Button ID="LoginButton"
-                    Text="Login"
-                    CssClass="login-input-button"
-                    OnClick="LoginrButton_Click"
-                    ValidationGroup="RegistrationValidationGroup"
-                    runat="server" />
-            </div>--%>
+
     </div>
 </asp:Content>
