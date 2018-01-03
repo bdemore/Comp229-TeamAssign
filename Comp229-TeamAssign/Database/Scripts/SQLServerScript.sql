@@ -341,7 +341,7 @@ BEGIN
 	OFFSET		0	ROWS
 	FETCH NEXT	1	ROWS ONLY
 
-	IF (@ReturnDate IS NULL)
+	IF ((@@ROWCOUNT > 0) AND (@ReturnDate IS NULL))
 	BEGIN
 		RETURN 1
 	END
@@ -424,21 +424,24 @@ IF (OBJECT_ID('SPUB_RESERVE_BOOK', 'P') IS NOT NULL)
 GO
 
 CREATE PROCEDURE SPUB_RESERVE_BOOK (
-	@UserId		DECIMAL(11, 0)
-,	@BookIsbn	DECIMAL(13, 0)
-,	@RentalId	DECIMAL(15, 0)	OUTPUT
+	@UserId			DECIMAL(11, 0)
+,	@BookIsbn		DECIMAL(13, 0)
+,	@RentalId		DECIMAL(15, 0)	OUTPUT
+,   @RentalDate		DATE			OUTPUT
+,	@RentalDueDate	DATE			OUTPUT
 )
 AS
 BEGIN
-	DECLARE @IsBookRented	BIT
+	DECLARE @HasOpenedRent	BIT
 
-	SET @HasOpenedRent = FNUB_OPENED_RENT(@UserId)
+	SET @HasOpenedRent = dbo.FNUB_OPENED_RENT(@UserId)
 
 	IF (@HasOpenedRent = 0)
 	BEGIN
 		BEGIN TRANSACTION
 
 		INSERT INTO	TBUB_BOOK_RENTAL (USER_ID) VALUES (@UserId)
+
 		SET @RentalId = SCOPE_IDENTITY()
 
 		INSERT INTO	TBUB_BOOK_RENTAL_DETAIL (
@@ -448,6 +451,11 @@ BEGIN
 			@RentalId
 		,	@BookIsbn
 		)
+
+		SELECT	@RentalDate		=	RENTAL_DATE
+		,		@RentalDueDate	=	RENTAL_DUE_DATE
+		FROM	TBUB_BOOK_RENTAL
+		WHERE	RENTAL_ID		=	@RentalId
 
 		COMMIT
 	END

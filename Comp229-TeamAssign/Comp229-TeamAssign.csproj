@@ -34,6 +34,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -195,12 +196,16 @@
       <DependentUpon>BookDetail.aspx</DependentUpon>
     </Compile>
     <Compile Include="Controllers\BookController.cs" />
+    <Compile Include="Controllers\BookRentalController.cs" />
     <Compile Include="Controllers\GenericController.cs" />
     <Compile Include="Controllers\IBookController.cs" />
+    <Compile Include="Controllers\IBookRentalController.cs" />
     <Compile Include="Controllers\IUserController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Database\DAOs\BookDAO.cs" />
+    <Compile Include="Database\DAOs\BookRentalDAO.cs" />
     <Compile Include="Database\DAOs\IBookDAO.cs" />
+    <Compile Include="Database\DAOs\IBookRentalDAO.cs" />
     <Compile Include="Database\DAOs\IGenericDAO.cs" />
     <Compile Include="Database\DAOs\IUserDAO.cs" />
     <Compile Include="Database\DAOs\UserDAO.cs" />
@@ -209,6 +214,7 @@
     <Compile Include="Database\Models\Book.cs" />
     <Compile Include="Database\DAOs\GenericDAO.cs" />
     <Compile Include="Database\Models\Author.cs" />
+    <Compile Include="Database\Models\BookRental.cs" />
     <Compile Include="Database\Models\Category.cs" />
     <Compile Include="Database\Models\DomainModel.cs" />
     <Compile Include="Database\Models\GenericModel.cs" />

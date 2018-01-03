@@ -7,14 +7,17 @@ using System.Data;
 
 namespace Comp229_TeamAssign.Controllers
 {
+    /// <summary>
+    /// Class containing all the necessary business logic do deal with Users.
+    /// </summary>
     public class UserController : GenericController<UserController>, IUserController
     {
         // The user dao.
         private IUserDAO userDAO = UserDAO.GetInstance();
 
-        // The parameter prefix.
-        private string paramPrefix = DatabaseUtils.IsOracle() ? "" : "@";
-
+        /// <summary>
+        /// Default constructor to be used by the Singleton.
+        /// </summary>
         private UserController()
         {
         }

@@ -10,6 +10,9 @@ namespace Comp229_TeamAssign.Database.DAOs
     /// </summary>
     public class UserDAO : GenericDAO<DecimalPrimaryKey, User, UserDAO>, IUserDAO
     {
+        /// <summary>
+        /// Default Constructor used by Singleton.
+        /// </summary>
         private UserDAO()
         {
         }

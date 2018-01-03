@@ -1,6 +1,9 @@
 ﻿using Comp229_TeamAssign.Controllers;
+using Comp229_TeamAssign.Database.Models;
 using System;
+using System.Collections.Generic;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace Comp229_TeamAssign
 {
@@ -8,6 +11,7 @@ namespace Comp229_TeamAssign
     {
         // The book controller to be used.
         private IBookController bookController = BookController.GetInstance();
+        private IBookRentalController bookRentalController = BookRentalController.GetInstance();
 
         /// <summary>
         /// Loads the page containing all the selected books.
@@ -24,14 +28,21 @@ namespace Comp229_TeamAssign
                     {
                         Session["BookList"] = bookController.RetrieveAllBooks();
                     }
-                }
 
-                ShowBooks();
+                    ShowBooks();
+                }
             }
             catch (Exception)
             {
 
             }
+        }
+
+        protected void ReserveButton_Click(object sender, EventArgs e)
+        {
+            Button button = sender as Button;
+            List<Book> books = Session["BookList"] as List<Book>;
+            BookRental bookRental = bookRentalController.ReserveBook(Session["LoggedUser"] as User, books.Find(tBook => tBook.PrimaryKey.Key == decimal.Parse(button.CommandArgument)));
         }
 
         /// <summary>
@@ -41,11 +52,6 @@ namespace Comp229_TeamAssign
         {
             BookRepeater.DataSource = Session["BookList"];
             BookRepeater.DataBind();
-        }
-
-        protected void ReserveButton_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

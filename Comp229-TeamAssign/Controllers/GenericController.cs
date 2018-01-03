@@ -1,4 +1,5 @@
 ﻿using Comp229_TeamAssign.Patterns;
+using Comp229_TeamAssign.Utils;
 
 namespace Comp229_TeamAssign.Controllers
 {
@@ -9,5 +10,7 @@ namespace Comp229_TeamAssign.Controllers
     public abstract class GenericController<C> : Singleton<C>
         where C : GenericController<C>
     {
+        // The parameter prefix.
+        protected string paramPrefix = DatabaseUtils.IsOracle() ? "" : "@";
     }
 }

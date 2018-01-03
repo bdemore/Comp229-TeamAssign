@@ -154,7 +154,15 @@ namespace Comp229_TeamAssign.Utils
                     {
                         if (parameter.DbSize > 0)
                         {
-                            command.Parameters.Add(parameter.Name, DbTypeToSqlDbType(parameter.DbType), parameter.DbSize).Value = parameter.Value;
+                            if (parameter.DbType != Database.DbType.DECIMAL)
+                            {
+                                command.Parameters.Add(parameter.Name, DbTypeToSqlDbType(parameter.DbType), parameter.DbSize).Value = parameter.Value;
+                            }
+                            else
+                            {
+                                command.Parameters.Add(parameter.Name, DbTypeToSqlDbType(parameter.DbType)).Value = parameter.Value;
+                                command.Parameters[parameter.Name].Precision = (byte)parameter.DbSize;
+                            }
                         }
                         else
                         {
