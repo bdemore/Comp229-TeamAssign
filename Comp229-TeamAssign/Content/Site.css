@@ -217,6 +217,14 @@ footer {
     float: right;
 }
 
+.ub-book-button-holder {
+    text-align: center;
+}
+
+.ub-book-button-holder .ub-book-button {
+    width: 95%;
+}
+
 .register-panel {
     border: 1px solid #004250;
     border-radius: 8px;
