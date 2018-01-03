@@ -14,7 +14,6 @@ namespace Comp229_TeamAssign
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            Session["LoggedUser"] = userController.Register("bruno@demore.com", "Teste1234", "Bruno", "Demore");
         }
 
         protected void RegisterButton_Click(object sender, EventArgs e)
@@ -48,8 +47,10 @@ namespace Comp229_TeamAssign
 
             if (null == Session["LoggedUser"])
             {
-                ShowErrorMessage("User already registered");
+                ShowErrorMessage("User already registered.");
             }
+
+            Response.Redirect("~/");
         }
 
         /// <summary>
@@ -62,5 +63,9 @@ namespace Comp229_TeamAssign
             ErrorPanel.CssClass = "register-error-message-hidden";
         }
 
+        protected void CancelButton_Click(object sender, EventArgs e)
+        {
+            ClearPageTextBoxes(this);
+        }
     }
 }

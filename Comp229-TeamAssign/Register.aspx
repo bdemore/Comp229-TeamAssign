@@ -103,7 +103,7 @@
             </div>
             <div class="col-sm-12 register-validator-message-container">
                 <asp:RequiredFieldValidator ID="ConfirmPasswordTextBox_RFV"
-                    ControlToValidate="PasswordTextBox"
+                    ControlToValidate="ConfirmPasswordTextBox"
                     Display="Dynamic"
                     ErrorMessage="Confirm Password is required"
                     CssClass="register-input-error"
@@ -120,7 +120,7 @@
                     <asp:Button ID="RegisterButton" Text="Register" CssClass="ub-book-button" runat="server" OnClick="RegisterButton_Click1" />
                 </div>
                 <div class="col-sm-6">
-                    <asp:Button ID="CancelButton" Text="Cancel" CssClass="ub-book-button" runat="server" />
+                    <asp:Button ID="CancelButton" Text="Cancel" CssClass="ub-book-button" runat="server" OnClick="CancelButton_Click" CausesValidation="false" />
                 </div>
             </div>
         </div>
