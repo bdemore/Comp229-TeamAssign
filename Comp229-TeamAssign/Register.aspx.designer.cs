@@ -31,6 +31,15 @@ namespace Comp229_TeamAssign {
         protected global::System.Web.UI.WebControls.TextBox FirstNameTextBox;
         
         /// <summary>
+        /// FirstNameTextBox_RFV control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator FirstNameTextBox_RFV;
+        
+        /// <summary>
         /// LastNameTextBox control.
         /// </summary>
         /// <remarks>
@@ -38,6 +47,15 @@ namespace Comp229_TeamAssign {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox LastNameTextBox;
+        
+        /// <summary>
+        /// LastNameTextBox_RFV control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator LastNameTextBox_RFV;
         
         /// <summary>
         /// EmailTextBox control.
@@ -49,6 +67,24 @@ namespace Comp229_TeamAssign {
         protected global::System.Web.UI.WebControls.TextBox EmailTextBox;
         
         /// <summary>
+        /// EmailTextBox_RFV control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator EmailTextBox_RFV;
+        
+        /// <summary>
+        /// EmailTextBoxRegex_RFV control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator EmailTextBoxRegex_RFV;
+        
+        /// <summary>
         /// PasswordTextBox control.
         /// </summary>
         /// <remarks>
@@ -58,6 +94,24 @@ namespace Comp229_TeamAssign {
         protected global::System.Web.UI.WebControls.TextBox PasswordTextBox;
         
         /// <summary>
+        /// PasswordTextBox_RFV control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator PasswordTextBox_RFV;
+        
+        /// <summary>
+        /// PasswordTextBoxRegex_RFV control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator PasswordTextBoxRegex_RFV;
+        
+        /// <summary>
         /// ConfirmPasswordTextBox control.
         /// </summary>
         /// <remarks>
@@ -65,6 +119,24 @@ namespace Comp229_TeamAssign {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox ConfirmPasswordTextBox;
+        
+        /// <summary>
+        /// ConfirmPasswordTextBox_RFV control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator ConfirmPasswordTextBox_RFV;
+        
+        /// <summary>
+        /// ConfirmPasswordTextBoxCompare_RFV control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator ConfirmPasswordTextBoxCompare_RFV;
         
         /// <summary>
         /// RegisterButton control.

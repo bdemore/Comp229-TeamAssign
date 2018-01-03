@@ -260,6 +260,11 @@ footer {
     border-radius: 8px;
 }
 
+.register-input-error {
+    color: red;
+    font-size: 14px;
+}
+
 .register-button-container {
     margin-top: 40px;
 }
@@ -268,4 +273,9 @@ footer {
     width: 90%;
     padding: 5px 0 5px 0;
     height: 40px;
+}
+
+.register-validator-message-container{
+    text-align: left;
+    padding-left: 25px;
 }
