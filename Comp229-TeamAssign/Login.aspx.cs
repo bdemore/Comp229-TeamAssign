@@ -15,6 +15,7 @@ namespace Comp229_TeamAssign
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            EmailLoginTextBox.Focus();
         }
 
         /// <summary>

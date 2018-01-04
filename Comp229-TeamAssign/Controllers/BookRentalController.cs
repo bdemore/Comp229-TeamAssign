@@ -40,7 +40,8 @@ namespace Comp229_TeamAssign.Controllers
                     PrimaryKey = new DecimalPrimaryKey(decimal.Parse(rentalId.Value.ToString())),
                     RentalDate = (DateTime) rentalDate.Value,
                     RentalDueDate = (DateTime) rentalDueDate.Value,
-                    User = user
+                    User = user,
+                    Books = { book }
                 };
             }
 

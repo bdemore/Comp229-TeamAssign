@@ -1,10 +1,22 @@
 ﻿using Comp229_TeamAssign.Database.Models.PrimaryKeys;
 using System;
+using System.Collections.Generic;
 
 namespace Comp229_TeamAssign.Database.Models
 {
+    /// <summary>
+    /// Class that will be used to store a book rental returned from the database table TBUB_BOOK_RENTAL.
+    /// </summary>
     public class BookRental : GenericModel<DecimalPrimaryKey>
     {
+        /// <summary>
+        /// Default Constructor.
+        /// </summary>
+        public BookRental()
+        {
+            Books = new List<Book>();
+        }
+
         // The date the rental was made.
         public DateTime RentalDate { get; set; }
 
@@ -16,6 +28,9 @@ namespace Comp229_TeamAssign.Database.Models
 
         // The user that performed the rental.
         public User User { get; set; }
+
+        // The books related to this rental.
+        public List<Book> Books { get; set; }
 
         public override bool Equals(object obj)
         {

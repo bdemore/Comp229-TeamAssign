@@ -2,6 +2,11 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <div class="ub-container">
+        <%-- Error Panel --%>
+        <asp:Panel ID="ErrorPanel" runat="server" CssClass="register-error-message-hidden">
+            <div><%= message %></div>
+        </asp:Panel>
+
         <%-- Model list --%>
         <asp:Repeater ID="BookRepeater" runat="server">
             <ItemTemplate>

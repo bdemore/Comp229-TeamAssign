@@ -9,6 +9,9 @@ namespace Comp229_TeamAssign
 {
     public partial class _Default : Page
     {
+        // The error message.
+        protected string message = "";
+
         // The book controller to be used.
         private IBookController bookController = BookController.GetInstance();
         private IBookRentalController bookRentalController = BookRentalController.GetInstance();
@@ -41,8 +44,19 @@ namespace Comp229_TeamAssign
         protected void ReserveButton_Click(object sender, EventArgs e)
         {
             Button button = sender as Button;
+            User user = Session["LoggedUser"] as User;
             List<Book> books = Session["BookList"] as List<Book>;
-            BookRental bookRental = bookRentalController.ReserveBook(Session["LoggedUser"] as User, books.Find(tBook => tBook.PrimaryKey.Key == decimal.Parse(button.CommandArgument)));
+            BookRental bookRental = bookRentalController.ReserveBook(user, books.Find(tBook => tBook.PrimaryKey.Key == decimal.Parse(button.CommandArgument)));
+
+            if (null == bookRental)
+            {
+                ShowErrorMessage(string.Format("{0}, you have a pending rental. Please, return the book(s) in your possession before renting again!", user.FirstName));
+            }
+            else
+            {
+                Session["BookRental"] = bookRental;
+                Response.Redirect("~/ReserveDetails");
+            }
         }
 
         /// <summary>
@@ -52,6 +66,16 @@ namespace Comp229_TeamAssign
         {
             BookRepeater.DataSource = Session["BookList"];
             BookRepeater.DataBind();
+        }
+
+        /// <summary>
+        /// Shows to the user any unexpecte error that may occur during the database communication.
+        /// </summary>
+        /// <param name="message">The error message to be shown.</param>
+        private void ShowErrorMessage(string message)
+        {
+            this.message = string.Format("<hr/><b>{0}</b><hr/>", message);
+            ErrorPanel.CssClass = "register-error-message";
         }
     }
 }

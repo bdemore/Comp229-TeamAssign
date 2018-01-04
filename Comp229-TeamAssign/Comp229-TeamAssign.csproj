@@ -151,6 +151,7 @@
     <Content Include="Images\logo.png" />
     <Content Include="Login.aspx" />
     <Content Include="Register.aspx" />
+    <Content Include="ReserveDetails.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -238,6 +239,13 @@
     </Compile>
     <Compile Include="Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ReserveDetails.aspx.cs">
+      <DependentUpon>ReserveDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReserveDetails.aspx.designer.cs">
+      <DependentUpon>ReserveDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="Utils\DatabaseUtils.cs" />
     <Compile Include="Default.aspx.cs">

@@ -231,6 +231,37 @@ hr {
     height: 40px;
 }
 
+.ub-book-reserve-number {
+    border-radius: 8px;
+    background-color: #71a4d6;
+    color: #fff;
+    font-size: 24pt;
+    box-shadow: 5px 5px 8px #353535;
+}
+
+.ub-book-reserve-details,
+.ub-book-reserve-item {
+    display: block;
+    overflow: auto;
+}
+
+.ub-book-reserve-details {
+    margin: 20px 0;
+    border-radius: 8px;
+    box-shadow: 5px 5px 8px #353535;
+    background-color: #ffffff;
+    padding: 15px 0 15px 0;
+}
+
+.ub-book-reserve-item-photo {
+    width: 16.666666664%;
+}
+
+.ub-book-reserve-item-photo > img {
+    width: 100px;
+    height: 100px;
+}
+
 .register-panel {
     border: 1px solid #004250;
     border-radius: 8px;
