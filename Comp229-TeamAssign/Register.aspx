@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Register.aspx.cs" Inherits="Comp229_TeamAssign.Register" %>
+﻿<%@ Page Title="User Registration" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Register.aspx.cs" Inherits="Comp229_TeamAssign.Register" %>
 
 <asp:Content ID="RegisterContent" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container body-content">
@@ -12,7 +12,7 @@
         <div class="col-sm-3">&nbsp</div>
         <div class="col-sm-6 register-input-container">
             <div class="col-sm-12 register-panel-title">
-                <asp:Label ID="TitleLabel" Text="Registration Form" runat="server" />
+                <asp:Label ID="TitleLabel" Text="User Registration" runat="server" />
             </div>
             <div class="col-sm-12">
                 <asp:TextBox ID="FirstNameTextBox"

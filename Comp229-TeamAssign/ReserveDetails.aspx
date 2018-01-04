@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ReserveDetails.aspx.cs" Inherits="Comp229_TeamAssign.ReserveDetails" %>
+﻿<%@ Page Title="Reserve Details" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ReserveDetails.aspx.cs" Inherits="Comp229_TeamAssign.ReserveDetails" %>
 
 <asp:Content ID="ReserveDetailsContent" ContentPlaceHolderID="MainContent" runat="server">
     <div class="ub-container">

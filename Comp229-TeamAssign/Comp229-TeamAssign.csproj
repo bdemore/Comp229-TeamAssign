@@ -150,6 +150,7 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Images\logo.png" />
     <Content Include="Login.aspx" />
+    <Content Include="MyAccount.aspx" />
     <Content Include="Register.aspx" />
     <Content Include="ReserveDetails.aspx" />
     <Content Include="Scripts\bootstrap.js" />
@@ -231,6 +232,13 @@
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MyAccount.aspx.cs">
+      <DependentUpon>MyAccount.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyAccount.aspx.designer.cs">
+      <DependentUpon>MyAccount.aspx</DependentUpon>
     </Compile>
     <Compile Include="Patterns\Singleton.cs" />
     <Compile Include="Register.aspx.cs">

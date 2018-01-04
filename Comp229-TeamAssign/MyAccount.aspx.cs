@@ -1,11 +1,13 @@
 ﻿using Comp229_TeamAssign.Controllers;
+using Comp229_TeamAssign.Database.Models;
+using Comp229_TeamAssign.Database.Models.PrimaryKeys;
 using System;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace Comp229_TeamAssign
 {
-    public partial class Register : System.Web.UI.Page
+    public partial class MyAccount : System.Web.UI.Page
     {
         // The erro message.
         protected string message = "";
@@ -15,23 +17,43 @@ namespace Comp229_TeamAssign
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            FirstNameTextBox.Focus();
-        }
-
-        /// <summary>
-        /// Captures the register button click event and registers the user to the database in case it doesn't exist.
-        /// </summary>
-        /// <param name="sender">The event sender</param>
-        /// <param name="e">The event arguments.</param>
-        protected void RegisterButton_Click(object sender, EventArgs e)
-        {
             if (null == Session["LoggedUser"])
             {
-                Session["LoggedUser"] = userController.Register(EmailTextBox.Text, PasswordTextBox.Text, FirstNameTextBox.Text, LastNameTextBox.Text);
+                Response.Redirect("~/Login");
+            }
+            else
+            {
+                if (!IsPostBack)
+                {
+                    FirstNameTextBox.Focus();
+                    User user = Session["LoggedUser"] as User;
+                    EmailTextBox.Text = user.Email;
+                    FirstNameTextBox.Text = user.FirstName;
+                    LastNameTextBox.Text = user.LastName;
+                }
+            }
+        }
+
+        protected void UpdateProfileButton_Click(object sender, EventArgs e)
+        {
+            if (null != Session["LoggedUser"])
+            {
+
+                User currUser = Session["LoggedUser"] as User;
+                User prevUser = new User()
+                {
+                    PrimaryKey = new DecimalPrimaryKey(currUser.PrimaryKey.Key),
+                    Email = currUser.Email,
+                    FirstName = currUser.FirstName,
+                    LastName = currUser.LastName
+                };
+
+                Session["LoggedUser"] = userController.UpdateProfile(EmailTextBox.Text, FirstNameTextBox.Text, LastNameTextBox.Text);
 
                 if (null == Session["LoggedUser"])
                 {
-                    ShowErrorMessage("User already registered.");
+                    Session["LoggedUser"] = prevUser;
+                    ShowErrorMessage(string.Format("An error has occurred when updating {0}'s profile.", prevUser.FirstName));
                 }
                 else
                 {

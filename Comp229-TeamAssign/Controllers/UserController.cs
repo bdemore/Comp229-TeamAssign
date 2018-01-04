@@ -71,5 +71,29 @@ namespace Comp229_TeamAssign.Controllers
 
             return null;
         }
+
+        /// <see cref="IUserController"/>
+        public User UpdateProfile(string email, string firstName, string lastName)
+        {
+            QueryParameter userEmail = new QueryParameter(paramPrefix + "UserEmail", email, Database.DbType.VARCHAR, 64, ParameterDirection.Input);
+            QueryParameter userFirstName = new QueryParameter(paramPrefix + "UserFirstName", firstName, Database.DbType.VARCHAR, 32, ParameterDirection.Input);
+            QueryParameter userLastName = new QueryParameter(paramPrefix + "UserLastName", lastName, Database.DbType.VARCHAR, 64, ParameterDirection.Input);
+            QueryParameter userId = new QueryParameter(paramPrefix + "UserId", Database.DbType.DECIMAL, 11, ParameterDirection.Output);
+
+            userDAO.ExecuteProcedure("SPUB_UPDATE_PROFILE", userEmail, userFirstName, userLastName, userId);
+
+            if (int.Parse(userId.Value.ToString()) > 0)
+            {
+                return new User()
+                {
+                    PrimaryKey = new DecimalPrimaryKey(decimal.Parse(userId.Value.ToString())),
+                    Email = email,
+                    FirstName = firstName,
+                    LastName = lastName
+                };
+            }
+
+            return null;
+        }
     }
 }

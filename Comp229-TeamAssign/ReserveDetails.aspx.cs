@@ -23,6 +23,7 @@ namespace Comp229_TeamAssign
                 reserveNumber = GetBookRentalIdAsString();
                 reserveDate = GetDateAsString(bookRental.RentalDate);
                 reserveDueDate = GetDateAsString(bookRental.RentalDueDate);
+                Session["BookRental"] = null;
                 ShowDetails();
             }
         }

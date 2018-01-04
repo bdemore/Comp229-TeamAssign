@@ -29,5 +29,10 @@ namespace Comp229_TeamAssign
             Session["LoggedUser"] = null;
             Response.Redirect("~/");
         }
+
+        protected void MyAccountLinkButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
