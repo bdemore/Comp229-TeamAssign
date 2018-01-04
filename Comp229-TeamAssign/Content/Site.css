@@ -334,3 +334,16 @@ hr {
     text-align: center;
     color: #aa0000;
 }
+
+.book-detail-container {
+    border: 2px;
+    font-size: medium;
+    font-style: italic;
+    margin-top: 20px;
+}
+
+.book-image-container {
+    width: 350px;
+    height: 400px;
+    margin-top: 20px;
+}
