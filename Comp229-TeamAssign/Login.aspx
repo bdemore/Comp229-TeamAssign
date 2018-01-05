@@ -46,7 +46,7 @@
                     CssClass="register-input-error"
                     runat="server" />
             </div>
-            <div class="col-sm-12 register-button-container">
+            <div class="col-sm-12 register-button-container" style="margin-top: 40px;">
                 <div class="col-sm-6">
                     <asp:Button ID="LoginButon" Text="Login" CssClass="ub-book-button" runat="server" Onclick="LoginButton_Click" />
                 </div>

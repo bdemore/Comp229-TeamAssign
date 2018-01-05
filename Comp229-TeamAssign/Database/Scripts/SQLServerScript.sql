@@ -368,6 +368,7 @@ BEGIN
 	FROM		TBUB_BOOK_RENTAL
 	WHERE		USER_ID		=	@UserId
 	ORDER BY	RENTAL_DATE	DESC
+	,           RENTAL_ID
 	OFFSET		0	ROWS
 	FETCH NEXT	1	ROWS ONLY
 
@@ -431,11 +432,13 @@ BEGIN
 		INSERT
 		INTO	TBUB_USERS (
 			USER_EMAIL
+		,	USER_ROLE
 		,	USER_PASSWORD
 		,	USER_FIRST_NAME
 		,	USER_LAST_NAME
 		) VALUES (
 			@UserEmail
+		,	N'USER'
 		,	@UserPassword
 		,	@UserFirstName
 		,	@UserLastName
@@ -461,7 +464,8 @@ CREATE PROCEDURE SPUB_UPDATE_PROFILE (
 	@UserEmail		VARCHAR(64)
 ,	@UserFirstName	VARCHAR(32)
 ,	@UserLastName	VARCHAR(64)
-,	@UserId			DECIMAL(11, 0) OUTPUT
+,	@UserId			DECIMAL(11, 0)	OUTPUT
+,	@UserRole		VARCHAR(5)		OUTPUT
 )
 AS
 BEGIN
@@ -473,6 +477,7 @@ BEGIN
 		WHERE	USER_EMAIL		=	@UserEmail
 
 		SELECT	@UserId		=	USER_ID
+		,		@UserRole	=	USER_ROLE
 		FROM	TBUB_USERS
 		WHERE	USER_EMAIL	=	@UserEmail
 	END
@@ -527,6 +532,44 @@ BEGIN
 	BEGIN
 		SET @RentalId = -1
 	END
+END
+GO
+
+IF (OBJECT_ID('SPUB_UPDATE_BOOK', 'P') IS NOT NULL)
+    DROP PROCEDURE SPUB_UPDATE_BOOK;
+GO
+
+CREATE PROCEDURE SPUB_UPDATE_BOOK (
+	@BookIsbn				DECIMAL(13, 0)
+,	@BookTitle				VARCHAR(128)
+,	@BookDescription		VARCHAR(2048)
+,	@BookPublicationDate	DATE
+,	@BookEdition			DECIMAL(5, 0)
+,	@BookIsAvailable		BIT
+,	@BookQuantityAvailable	DECIMAL(5, 0)
+,	@BookPages				DECIMAL(5, 0)
+,	@BookImageUrl01			VARCHAR(255)
+,	@BookImageUrl02			VARCHAR(255)
+,	@BookImageUrl03			VARCHAR(255)
+,	@BookImageUrl04			VARCHAR(255)
+,	@BookImageUrl05			VARCHAR(255)
+)
+AS
+BEGIN
+	UPDATE	TBUB_BOOKS
+	SET		BOOK_TITLE				=	@BookTitle
+	,		BOOK_DESCRIPTION		=	@BookDescription
+	,		BOOK_PUBLICATION_DATE	=	@BookPublicationDate
+	,		BOOK_EDITION			=	@BookEdition
+	,		BOOK_IS_AVAILABLE		=	@BookIsAvailable
+	,		BOOK_QUANTITY_AVAILABLE	=	@BookQuantityAvailable
+	,		BOOK_PAGES				=	@BookPages
+	,		BOOK_IMG_URL_01			=	@BookImageUrl01
+	,		BOOK_IMG_URL_02			=	@BookImageUrl02
+	,		BOOK_IMG_URL_03			=	@BookImageUrl03
+	,		BOOK_IMG_URL_04			=	@BookImageUrl04
+	,		BOOK_IMG_URL_05			=	@BookImageUrl05
+	WHERE	BOOK_ISBN				=	@BookIsbn
 END
 GO
 

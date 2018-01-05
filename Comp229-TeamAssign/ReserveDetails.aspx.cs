@@ -39,7 +39,7 @@ namespace Comp229_TeamAssign
 
         private string GetDateAsString(DateTime date)
         {
-            return date.ToString(@"dd\/MM\/yyyy");
+            return date.ToString(@"MM\/dd\/yyyy");
         }
 
         private void ShowDetails()

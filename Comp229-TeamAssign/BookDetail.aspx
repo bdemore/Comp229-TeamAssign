@@ -1,4 +1,6 @@
-﻿    <%@ Page Title="Book Details" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="BookDetail.aspx.cs" Inherits="Comp229_TeamAssign.BookDetail" %>
+﻿<%@ Page Title="Book Details" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="BookDetail.aspx.cs" Inherits="Comp229_TeamAssign.BookDetail" %>
+
+<%@ Import Namespace="Comp229_TeamAssign.Database.Models" %>
 
 <asp:Content ID="BookDetailContent" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -43,17 +45,26 @@
                 </div>
                 <% } %>
             </div>
-            <% if (null != Session["LoggedUser"]) { %>
-                <div>
+            <% if ((null != Session["LoggedUser"]) && book.IsAvailable) { %>
+                <div class="ub-book-button-holder">
+                    <asp:Button
+                        ID="BookReserveButton"
+                        Text="Reserve"
+                        CssClass="ub-book-button"
+                        OnClick="ReserveButton_Click"
+                        runat="server" />
+                </div>
+
+                <% if ((Session["LoggedUser"] as User).Role == "ADMIN") { %>
                     <div class="ub-book-button-holder">
                         <asp:Button
-                            ID="BookReserveButton"
-                            Text="Reserve"
+                            ID="BookUpdateButton"
+                            Text="Update Book"
                             CssClass="ub-book-button"
-                            OnClick="ReserveButton_Click"
+                            OnClick="BookUpdateButton_Click"
                             runat="server" />
                     </div>
-                </div>
+                <% } %>
             <% } %>
         </div>
         <div class="col-sm-7 ub-book-details-text">
@@ -127,7 +138,7 @@
                     <span class="ub-book-details-text-description-bold">Publication: </span>
                 </div>
                 <div class="col-sm-9">
-                    <span><%= book.PublicationDate.Value.ToString(@"dd\/MM\/yyyy") %></span>
+                    <span><%= book.PublicationDate.Value.ToString(@"MM\/dd\/yyyy") %></span>
                 </div>
             </div>
             <div class="ub-book-details-text-description">

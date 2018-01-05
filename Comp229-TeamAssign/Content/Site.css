@@ -379,7 +379,8 @@ hr {
 }
 
 .register-button-container {
-    margin-top: 40px;
+    display: block;
+    overflow: auto;
 }
 
 .register-button-container .ub-book-button {

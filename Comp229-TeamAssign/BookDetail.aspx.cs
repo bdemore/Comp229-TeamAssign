@@ -15,22 +15,30 @@ namespace Comp229_TeamAssign
         // The error message.
         protected string message = "";
 
+        // The book selected by the user.
         protected Book book;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (null == Session["BookList"])
+            if ((null != Session["BookList"]) && (null != Request.QueryString["isbn"]))
+            {
+                book = bookController.RetrieveBookDetails(Request.QueryString["isbn"], Session["BookList"] as List<Book>);
+                if (!IsPostBack)
+                {
+                    FillBookDetails();
+                }
+            }
+            else
             {
                 Response.Redirect("~/");
             }
-
-            book = bookController.RetrieveBookDetails(Request.QueryString["isbn"], Session["BookList"] as List<Book>);
-            if (!IsPostBack)
-            {
-                FillBookDetails();
-            }
         }
 
+        /// <summary>
+        /// Performs the book reservation if the user hasn't any pending reservations.
+        /// </summary>
+        /// <param name="sender">The event sender.</param>
+        /// <param name="e">The event arguments.</param>
         protected void ReserveButton_Click(object sender, EventArgs e)
         {
             Button button = sender as Button;
@@ -46,6 +54,58 @@ namespace Comp229_TeamAssign
             {
                 Session["BookRental"] = bookRental;
                 Response.Redirect("~/ReserveDetails");
+            }
+        }
+
+        /// <summary>
+        /// This event will only be available for admin staff and will allow an administrator to update the book information.
+        /// If the user is not an administrator, he / she is logged out and redirected to the login page.
+        /// </summary>
+        /// <param name="sender">The event sender.</param>
+        /// <param name="e">The event arguments.</param>
+        protected void BookUpdateButton_Click(object sender, EventArgs e)
+        {
+            if ((null != Session["LoggedUser"]) && (Session["LoggedUser"] as User).Role == "ADMIN")
+            {
+                Response.Redirect("~/UpdateBook?isbn=" + Request.QueryString["isbn"]);
+            }
+            else
+            {
+                Session["LoggedUser"] = null;
+                Response.Redirect("~/Login");
+            }
+        }
+
+        /// <summary>
+        /// Changes the large image based on the thumbnail clicked.
+        /// </summary>
+        /// <param name="sender">The event sender.</param>
+        /// <param name="e">The event arguments.</param>
+        protected void BookUrl02ImageButton_Click(object sender, System.Web.UI.ImageClickEventArgs e)
+        {
+            ImageButton button = sender as ImageButton;
+
+            switch (button.CommandArgument)
+            {
+                case "1":
+                    BookImage.ImageUrl = book.ImageUrl01;
+                    break;
+
+                case "2":
+                    BookImage.ImageUrl = book.ImageUrl02;
+                    break;
+
+                case "3":
+                    BookImage.ImageUrl = book.ImageUrl03;
+                    break;
+
+                case "4":
+                    BookImage.ImageUrl = book.ImageUrl04;
+                    break;
+
+                case "5":
+                    BookImage.ImageUrl = book.ImageUrl05;
+                    break;
             }
         }
 
@@ -110,39 +170,6 @@ namespace Comp229_TeamAssign
             // Binds the categories to its repeater
             BookCategoryRepeater.DataSource = book.Categories;
             BookCategoryRepeater.DataBind();
-        }
-
-        /// <summary>
-        /// Changes the large image based on the thumbnail clicked.
-        /// </summary>
-        /// <param name="sender">The event sender.</param>
-        /// <param name="e">The event arguments.</param>
-        protected void BookUrl02ImageButton_Click(object sender, System.Web.UI.ImageClickEventArgs e)
-        {
-            ImageButton button = sender as ImageButton;
-
-            switch (button.CommandArgument)
-            {
-                case "1":
-                    BookImage.ImageUrl = book.ImageUrl01;
-                    break;
-
-                case "2":
-                    BookImage.ImageUrl = book.ImageUrl02;
-                    break;
-
-                case "3":
-                    BookImage.ImageUrl = book.ImageUrl03;
-                    break;
-
-                case "4":
-                    BookImage.ImageUrl = book.ImageUrl04;
-                    break;
-
-                case "5":
-                    BookImage.ImageUrl = book.ImageUrl05;
-                    break;
-            }
         }
     }
 }

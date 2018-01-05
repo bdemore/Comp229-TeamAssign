@@ -8,7 +8,7 @@ namespace Comp229_TeamAssign.Patterns
     /// <typeparam name="T">The class type that should be instantiated</typeparam>
     public abstract class Singleton<T>
     {
-        protected static T INSTANCE = default(T);
+        protected static T INSTANCE = ReflectionUtils.ConstructDefaultNonPublic<T>();
 
         /// <summary>
         /// Gets the singleton instance. If not yet created, create the instance dynamically and return it. Otherwise just return the existing instance.
@@ -16,12 +16,6 @@ namespace Comp229_TeamAssign.Patterns
         /// <returns>The singleton instance.</returns>
         public static T GetInstance()
         {
-            // Using reflection to instantiate the child singleton class.
-            if (null == INSTANCE)
-            {
-                INSTANCE = ReflectionUtils.ConstructDefaultNonPublic<T>();
-            }
-
             return INSTANCE;
         }
     }
