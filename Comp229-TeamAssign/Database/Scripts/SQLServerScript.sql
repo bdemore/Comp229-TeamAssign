@@ -101,6 +101,9 @@ BEGIN
 	,	USER_LAST_NAME
 			VARCHAR(64)
 			NOT NULL
+	,	USER_ROLE
+			VARCHAR(5)
+			NOT NULL
 	,	USER_CREATE_DATE
 			DATETIME2
 			NOT NULL
@@ -160,6 +163,9 @@ BEGIN
 			NOT NULL
 	,	BOOK_QUANTITY_AVAILABLE
 			DECIMAL(3, 0)
+			NOT NULL
+	,	BOOK_PAGES
+			DECIMAL(5, 0)
 			NOT NULL
 	,	BOOK_IMG_URL_01
 			VARCHAR(255)
@@ -277,6 +283,9 @@ GO
 /*
  * Inserting Data.
  */
+INSERT INTO	dbo.TBUB_USERS (USER_EMAIL, USER_PASSWORD, USER_FIRST_NAME, USER_LAST_NAME, USER_ROLE, USER_CREATE_DATE)
+VALUES( 'admin_01@admin.com', 'Admin1234', 'Administrator', '01', 'ADMIN', SYSDATETIME())
+
 INSERT INTO TBUB_CATEGORIES(CATEGORY_NAME) VALUES(N'Fantasy')
 INSERT INTO TBUB_CATEGORIES(CATEGORY_NAME) VALUES(N'Magic')
 
@@ -284,26 +293,47 @@ INSERT INTO TBUB_AUTHORS(AUTHOR_NAME) VALUES(N'J. K. Rowling')
 
 INSERT INTO TBUB_PUBLISHERS(PUBLISHER_NAME) VALUES(N'Bloomsbury Children''s Books')
 
-INSERT INTO TBUB_BOOKS(BOOK_ISBN, BOOK_TITLE, BOOK_DESCRIPTION, BOOK_PUBLICATION_DATE, BOOK_EDITION, BOOK_IS_AVAILABLE, BOOK_QUANTITY_AVAILABLE, BOOK_IMG_URL_01, PUBLISHER_ID)
+INSERT INTO TBUB_BOOKS(BOOK_ISBN, BOOK_TITLE, BOOK_DESCRIPTION, BOOK_PUBLICATION_DATE, BOOK_EDITION, BOOK_IS_AVAILABLE, BOOK_QUANTITY_AVAILABLE, BOOK_PAGES, PUBLISHER_ID, BOOK_IMG_URL_01, BOOK_IMG_URL_02, BOOK_IMG_URL_03, BOOK_IMG_URL_04, BOOK_IMG_URL_05)
 VALUES(
 	9781408845646, N'Harry Potter and the Philosopher''s Stone',
 	N'Prepare to be spellbound by Jim Kay''s dazzling depiction of the wizarding world and much loved characters in this full-colour illustrated hardback edition of the nation''s favourite children''s book – Harry Potter and the Philosopher''s Stone. Brimming with rich detail and humour that perfectly complements J.K. Rowling''s timeless classic, Jim Kay''s glorious illustrations will captivate fans and new readers alike.',
-	'2015-10-06', 1, 1, 10, N'https://images-na.ssl-images-amazon.com/images/I/51sTwK7kBxL._AA218_.jpg', 1)
-INSERT INTO TBUB_BOOKS(BOOK_ISBN, BOOK_TITLE, BOOK_DESCRIPTION, BOOK_PUBLICATION_DATE, BOOK_EDITION, BOOK_IS_AVAILABLE, BOOK_QUANTITY_AVAILABLE, BOOK_IMG_URL_01, PUBLISHER_ID)
+	'2015-10-06', 1, 1, 2, 300, 1,
+	N'https://images-na.ssl-images-amazon.com/images/I/51sTwK7kBxL._AA218_.jpg', 
+	NULL,
+	NULL,
+	NULL,
+	NULL)
+INSERT INTO TBUB_BOOKS(BOOK_ISBN, BOOK_TITLE, BOOK_DESCRIPTION, BOOK_PUBLICATION_DATE, BOOK_EDITION, BOOK_IS_AVAILABLE, BOOK_QUANTITY_AVAILABLE, BOOK_PAGES, PUBLISHER_ID, BOOK_IMG_URL_01, BOOK_IMG_URL_02, BOOK_IMG_URL_03, BOOK_IMG_URL_04, BOOK_IMG_URL_05)
 VALUES(
 	9781408845653, N'Harry Potter and the Chamber of Secrets',
 	N'Prepare to be spellbound by Jim Kay''s dazzling full-colour illustrations in this stunning new edition of J.K. Rowling''s Harry Potter and the Chamber of Secrets. Breathtaking scenes, dark themes and unforgettable characters await inside this fully illustrated edition. With paint, pencil and pixels, award-winning illustrator Jim Kay conjures the wizarding world as we have never seen it before. Fizzing with magic and brimming with humour, this inspired reimagining will captivate fans and new readers alike, as Harry and his friends, now in their second year at Hogwarts School of Witchcraft and Wizardry, seek out a legendary chamber and the deadly secret that lies at its heart.',
-	'2016-10-04', 1, 1, 10, N'https://images-na.ssl-images-amazon.com/images/I/61+abdOC5gL._AA218_.jpg', 1)
-INSERT INTO TBUB_BOOKS(BOOK_ISBN, BOOK_TITLE, BOOK_DESCRIPTION, BOOK_PUBLICATION_DATE, BOOK_EDITION, BOOK_IS_AVAILABLE, BOOK_QUANTITY_AVAILABLE, BOOK_IMG_URL_01, PUBLISHER_ID)
+	'2016-10-04', 1, 1, 1, 289, 1,
+	N'https://images-na.ssl-images-amazon.com/images/I/61+abdOC5gL._AA218_.jpg',
+	NULL,
+	NULL,
+	NULL,
+	NULL)
+INSERT INTO TBUB_BOOKS(BOOK_ISBN, BOOK_TITLE, BOOK_DESCRIPTION, BOOK_PUBLICATION_DATE, BOOK_EDITION, BOOK_IS_AVAILABLE, BOOK_QUANTITY_AVAILABLE, BOOK_PAGES, PUBLISHER_ID, BOOK_IMG_URL_01, BOOK_IMG_URL_02, BOOK_IMG_URL_03, BOOK_IMG_URL_04, BOOK_IMG_URL_05)
 VALUES(
 	9781408845660, N'Harry Potter and the Prisoner of Azkaban',
 	N'An extraordinary creative achievement by an extraordinary talent, Jim Kay''s inspired reimagining of J.K. Rowling''s classic series has captured a devoted following worldwide. This stunning new fully illustrated edition of Harry Potter and the Prisoner of Azkaban brings more breathtaking scenes and unforgettable characters – including Sirius Black, Remus Lupin and Professor Trelawney. With paint, pencil and pixels, Kay conjures the wizarding world as we have never seen it before. Fizzing with magic and brimming with humour, this full-colour edition will captivate fans and new readers alike as Harry, now in his third year at Hogwarts School of Witchcraft and Wizardry, faces Dementors, death omens and, of course, danger.',
-	'2017-10-03', 1, 1, 10, N'https://images-na.ssl-images-amazon.com/images/I/617HC+dtBOL._AA218_.jpg', 1)
-INSERT INTO TBUB_BOOKS(BOOK_ISBN, BOOK_TITLE, BOOK_DESCRIPTION, BOOK_PUBLICATION_DATE, BOOK_EDITION, BOOK_IS_AVAILABLE, BOOK_QUANTITY_AVAILABLE, BOOK_IMG_URL_01, PUBLISHER_ID)
+	'2017-10-03', 1, 1, 3, 334, 1,
+	N'https://images-na.ssl-images-amazon.com/images/I/617HC+dtBOL._AA218_.jpg',
+	NULL,
+	NULL,
+	NULL,
+	NULL)
+INSERT INTO TBUB_BOOKS(BOOK_ISBN, BOOK_TITLE, BOOK_DESCRIPTION, BOOK_PUBLICATION_DATE, BOOK_EDITION, BOOK_IS_AVAILABLE, BOOK_QUANTITY_AVAILABLE, BOOK_PAGES, PUBLISHER_ID, BOOK_IMG_URL_01, BOOK_IMG_URL_02, BOOK_IMG_URL_03, BOOK_IMG_URL_04, BOOK_IMG_URL_05)
 VALUES(
 	9781408890769, N'Harry Potter - A History of Magic: The Book of the Exhibition',
 	N'Harry Potter: A History of Magic is the official book of the exhibition, a once-in-a-lifetime collaboration between Bloomsbury, J.K. Rowling and the brilliant curators of the British Library. It promises to take readers on a fascinating journey through the subjects studied at Hogwarts School of Witchcraft and Wizardry - from Alchemy and Potions classes through to Herbology and Care of Magical Creatures.',
-	'2017-10-20', 1, 1, 10, N'https://images-na.ssl-images-amazon.com/images/I/61Lo-+FBs+L._AA218_.jpg', 1)
+	'2017-10-20', 1, 1, 1, 256, 1,
+	N'https://images-na.ssl-images-amazon.com/images/I/61Lo-%2BFBs%2BL.jpg',
+	N'https://images-na.ssl-images-amazon.com/images/I/51Ck3uTZQEL.jpg',
+	NULL,
+	NULL,
+	NULL)
+
 
 INSERT INTO TBUB_BOOKS_AUTHORS(BOOK_ISBN, AUTHOR_ID) VALUES(9781408845646, 1)
 INSERT INTO TBUB_BOOKS_AUTHORS(BOOK_ISBN, AUTHOR_ID) VALUES(9781408845653, 1)
@@ -361,12 +391,14 @@ CREATE PROCEDURE SPUB_LOGIN (
 	@UserEmail		VARCHAR(64)
 ,	@UserPassword	CHAR(64)
 ,	@UserId			DECIMAL(11, 0)	OUTPUT
+,	@UserRole		VARCHAR(5)		OUTPUT
 ,	@UserFirstName	VARCHAR(32)		OUTPUT
 ,   @UserLastName	VARCHAR(64)		OUTPUT
 )
 AS
 BEGIN
 	SELECT	@UserId			=	USER_ID
+	,		@UserRole		=	USER_ROLE
 	,		@UserFirstName	=	USER_FIRST_NAME
 	,		@UserLastName	=	USER_LAST_NAME
 	FROM	TBUB_USERS
@@ -389,7 +421,8 @@ CREATE PROCEDURE SPUB_REGISTER (
 ,	@UserPassword	CHAR(64)
 ,	@UserFirstName	VARCHAR(32)
 ,	@UserLastName	VARCHAR(64)
-,	@UserId			DECIMAL(11, 0) OUTPUT
+,	@UserId			DECIMAL(11, 0)	OUTPUT
+,	@UserRole		VARCHAR(5)		OUTPUT
 )
 AS
 BEGIN
@@ -409,6 +442,7 @@ BEGIN
 		)
 
 		SELECT	@UserId		=	USER_ID
+		,		@UserRole	=	USER_ROLE
 		FROM	TBUB_USERS
 		WHERE	USER_EMAIL	=	@UserEmail
 	END
@@ -492,6 +526,55 @@ BEGIN
 	ELSE
 	BEGIN
 		SET @RentalId = -1
+	END
+END
+GO
+
+/*
+ * Create Triggers
+ */
+IF (OBJECT_ID ('TGUB_DECREASE_AVAILABLE_BOOKS','TR') IS NOT NULL)
+   DROP TRIGGER TGUB_DECREASE_AVAILABLE_BOOKS;
+GO
+
+CREATE TRIGGER TGUB_DECREASE_AVAILABLE_BOOKS ON TBUB_BOOK_RENTAL_DETAIL
+AFTER INSERT
+AS
+BEGIN
+	UPDATE		TBUB_BOOKS
+	SET			BOOK_QUANTITY_AVAILABLE	=	BOOK_QUANTITY_AVAILABLE - 1
+	,			BOOK_IS_AVAILABLE		=	CASE
+												WHEN BOOK_QUANTITY_AVAILABLE > 1 THEN 1
+												ELSE 0
+											END
+	FROM		TBUB_BOOKS	book
+	INNER JOIN	Inserted	inse
+	ON			inse.BOOK_ISBN	=	book.BOOK_ISBN
+END
+GO
+
+IF (OBJECT_ID ('TGUB_INCREASE_AVAILABLE_BOOKS','TR') IS NOT NULL)
+   DROP TRIGGER TGUB_INCREASE_AVAILABLE_BOOKS;
+GO
+
+CREATE TRIGGER TGUB_INCREASE_AVAILABLE_BOOKS ON TBUB_BOOK_RENTAL
+AFTER UPDATE
+AS
+BEGIN
+	IF (UPDATE(RENTAL_RETURN_DATE))
+	BEGIN
+		UPDATE		TBUB_BOOKS
+		SET			BOOK_QUANTITY_AVAILABLE	=	BOOK_QUANTITY_AVAILABLE + 1
+		,			BOOK_IS_AVAILABLE		=	1
+		FROM		TBUB_BOOKS				book
+		INNER JOIN	TBUB_BOOK_RENTAL_DETAIL	deta
+		ON			deta.BOOK_ISBN			=	book.BOOK_ISBN
+		INNER JOIN	Inserted				inse
+		ON			inse.RENTAL_ID			=	deta.RENTAL_ID
+		INNER JOIN	Deleted					dele
+		ON			dele.RENTAL_ID			=	inse.RENTAL_ID
+		WHERE		dele.RENTAL_RETURN_DATE	IS	NULL
+		AND			inse.RENTAL_RETURN_DATE	IS	NOT NULL
 	END
 END
 GO

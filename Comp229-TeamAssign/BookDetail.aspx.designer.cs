@@ -22,12 +22,84 @@ namespace Comp229_TeamAssign {
         protected global::System.Web.UI.WebControls.Panel ErrorPanel;
         
         /// <summary>
-        /// ReserveButton control.
+        /// BookImage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ReserveButton;
+        protected global::System.Web.UI.WebControls.Image BookImage;
+        
+        /// <summary>
+        /// BookUrl01ImageButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton BookUrl01ImageButton;
+        
+        /// <summary>
+        /// BookUrl02ImageButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton BookUrl02ImageButton;
+        
+        /// <summary>
+        /// BookUrl03ImageButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton BookUrl03ImageButton;
+        
+        /// <summary>
+        /// BookUrl04ImageButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton BookUrl04ImageButton;
+        
+        /// <summary>
+        /// BookUrl05ImageButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton BookUrl05ImageButton;
+        
+        /// <summary>
+        /// BookReserveButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BookReserveButton;
+        
+        /// <summary>
+        /// BookAuthorRepeater control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater BookAuthorRepeater;
+        
+        /// <summary>
+        /// BookCategoryRepeater control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater BookCategoryRepeater;
     }
 }
