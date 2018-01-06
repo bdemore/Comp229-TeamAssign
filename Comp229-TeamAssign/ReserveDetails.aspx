@@ -7,6 +7,12 @@
                 <span>Reservation: <b># <%= reserveNumber %></b></span>
             </div>
             <div class="col-sm-12 ub-book-reserve-details">
+                <div class="col-sm-12 ub-book-reserve-item-header">
+                    <div class="col-sm-2"><span>Photo</span></div>
+                    <div class="col-sm-6"><span>Title</span></div>
+                    <div class="col-sm-2"><span>Rent Date</span></div>
+                    <div class="col-sm-2"><span>Rent Due Date</span></div>
+                </div>
                 <asp:Repeater ID="ReserveItemRepeater" runat="server">
                     <ItemTemplate>
                         <div class="col-sm-12 ub-book-reserve-item">

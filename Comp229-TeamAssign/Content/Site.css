@@ -43,6 +43,7 @@ hr {
         margin-top: 10px;
         text-align: center;
         height: 50px;
+        padding: 0 10px;
     }
 
     .ub-book-select-input,
@@ -250,12 +251,24 @@ hr {
     overflow: auto;
 }
 
+.ub-book-reserve-item-header {
+    text-align: left;
+    background-color: #9f887d;
+    color: #ffffff;
+    font-size: 18pt;
+    font-weight: bold;
+    overflow: auto;
+    padding: 5px 0;
+    margin-bottom: 15px;
+    border-radius: 8px;
+}
+
 .ub-book-reserve-details {
     margin: 20px 0;
     border-radius: 8px;
     box-shadow: 5px 5px 8px #353535;
     background-color: #ffffff;
-    padding: 15px 0 15px 0;
+    padding: 5px 5px 15px 5px;
 }
 
 .ub-book-reserve-item-photo {
@@ -264,7 +277,7 @@ hr {
 
 .ub-book-reserve-item-photo > img {
     width: 100px;
-    height: 100px;
+    height: 118px;
 }
 
 
@@ -402,4 +415,10 @@ hr {
     display: block;
     text-align: center;
     color: #aa0000;
+}
+
+.register-success-message {
+    display: block;
+    text-align: center;
+    color: #00aa00;
 }

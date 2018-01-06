@@ -1,8 +1,8 @@
 ﻿<%@ Page Title="Update Book" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="UpdateBook.aspx.cs" Inherits="Comp229_TeamAssign.UpdateBook" %>
 <asp:Content ID="UpdateBookContent" ContentPlaceHolderID="MainContent" runat="server">
         <div class="container body-content">
-        <%-- Error Panel --%>
-        <asp:Panel ID="ErrorPanel" runat="server" CssClass="register-error-message-hidden">
+        <%-- Success Panel --%>
+        <asp:Panel ID="SuccessPanel" runat="server" CssClass="register-error-message-hidden">
             <div><%= message %></div>
         </asp:Panel>
     </div>

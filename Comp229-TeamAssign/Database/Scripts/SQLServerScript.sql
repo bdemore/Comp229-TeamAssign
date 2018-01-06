@@ -288,28 +288,40 @@ VALUES( 'admin_01@admin.com', 'Admin1234', 'Administrator', '01', 'ADMIN', SYSDA
 
 INSERT INTO TBUB_CATEGORIES(CATEGORY_NAME) VALUES(N'Fantasy')
 INSERT INTO TBUB_CATEGORIES(CATEGORY_NAME) VALUES(N'Magic')
+INSERT INTO TBUB_CATEGORIES(CATEGORY_NAME) VALUES(N'Information Technology')
+INSERT INTO TBUB_CATEGORIES(CATEGORY_NAME) VALUES(N'Artificial Intelligence')
+INSERT INTO TBUB_CATEGORIES(CATEGORY_NAME) VALUES(N'Game Programming')
+INSERT INTO TBUB_CATEGORIES(CATEGORY_NAME) VALUES(N'Mathematics')
 
 INSERT INTO TBUB_AUTHORS(AUTHOR_NAME) VALUES(N'J. K. Rowling')
+INSERT INTO TBUB_AUTHORS(AUTHOR_NAME) VALUES(N'Peter Norvig Stuart J Russell')
+INSERT INTO TBUB_AUTHORS(AUTHOR_NAME) VALUES(N'Jason Gregory')
+INSERT INTO TBUB_AUTHORS(AUTHOR_NAME) VALUES(N'Robert Nystrom')
+INSERT INTO TBUB_AUTHORS(AUTHOR_NAME) VALUES(N'Eric Lengyel')
 
 INSERT INTO TBUB_PUBLISHERS(PUBLISHER_NAME) VALUES(N'Bloomsbury Children''s Books')
+INSERT INTO TBUB_PUBLISHERS(PUBLISHER_NAME) VALUES(N'Pearson India')
+INSERT INTO TBUB_PUBLISHERS(PUBLISHER_NAME) VALUES(N'A K Peters/CRC Press')
+INSERT INTO TBUB_PUBLISHERS(PUBLISHER_NAME) VALUES(N'Genever Benning')
+INSERT INTO TBUB_PUBLISHERS(PUBLISHER_NAME) VALUES(N'Course Technology PTR')
 
 INSERT INTO TBUB_BOOKS(BOOK_ISBN, BOOK_TITLE, BOOK_DESCRIPTION, BOOK_PUBLICATION_DATE, BOOK_EDITION, BOOK_IS_AVAILABLE, BOOK_QUANTITY_AVAILABLE, BOOK_PAGES, PUBLISHER_ID, BOOK_IMG_URL_01, BOOK_IMG_URL_02, BOOK_IMG_URL_03, BOOK_IMG_URL_04, BOOK_IMG_URL_05)
 VALUES(
-	9781408845646, N'Harry Potter and the Philosopher''s Stone',
+	9781408845646, N'Harry Potter and the Philosopher''s Stone: Illustrated Edition',
 	N'Prepare to be spellbound by Jim Kay''s dazzling depiction of the wizarding world and much loved characters in this full-colour illustrated hardback edition of the nation''s favourite children''s book – Harry Potter and the Philosopher''s Stone. Brimming with rich detail and humour that perfectly complements J.K. Rowling''s timeless classic, Jim Kay''s glorious illustrations will captivate fans and new readers alike.',
 	'2015-10-06', 1, 1, 2, 300, 1,
-	N'https://images-na.ssl-images-amazon.com/images/I/51sTwK7kBxL._AA218_.jpg', 
-	NULL,
-	NULL,
-	NULL,
-	NULL)
+	N'https://images-na.ssl-images-amazon.com/images/I/51sTwK7kBxL.jpg', 
+	N'https://images-na.ssl-images-amazon.com/images/I/51bor5867kL.jpg',
+	N'https://images-na.ssl-images-amazon.com/images/I/A1Zq8UVPX5L.jpg',
+	N'https://images-na.ssl-images-amazon.com/images/I/A1WzMnxvS4L.jpg',
+	N'https://images-na.ssl-images-amazon.com/images/I/91oBYD92sIL.jpg')
 INSERT INTO TBUB_BOOKS(BOOK_ISBN, BOOK_TITLE, BOOK_DESCRIPTION, BOOK_PUBLICATION_DATE, BOOK_EDITION, BOOK_IS_AVAILABLE, BOOK_QUANTITY_AVAILABLE, BOOK_PAGES, PUBLISHER_ID, BOOK_IMG_URL_01, BOOK_IMG_URL_02, BOOK_IMG_URL_03, BOOK_IMG_URL_04, BOOK_IMG_URL_05)
 VALUES(
-	9781408845653, N'Harry Potter and the Chamber of Secrets',
+	9781408845653, N'Harry Potter and the Chamber of Secrets: Illustred Edition',
 	N'Prepare to be spellbound by Jim Kay''s dazzling full-colour illustrations in this stunning new edition of J.K. Rowling''s Harry Potter and the Chamber of Secrets. Breathtaking scenes, dark themes and unforgettable characters await inside this fully illustrated edition. With paint, pencil and pixels, award-winning illustrator Jim Kay conjures the wizarding world as we have never seen it before. Fizzing with magic and brimming with humour, this inspired reimagining will captivate fans and new readers alike, as Harry and his friends, now in their second year at Hogwarts School of Witchcraft and Wizardry, seek out a legendary chamber and the deadly secret that lies at its heart.',
 	'2016-10-04', 1, 1, 1, 289, 1,
-	N'https://images-na.ssl-images-amazon.com/images/I/61+abdOC5gL._AA218_.jpg',
-	NULL,
+	N'https://images-na.ssl-images-amazon.com/images/I/61%2BabdOC5gL.jpg',
+	N'https://images-na.ssl-images-amazon.com/images/I/A1ikEJqTnuL.jpg',
 	NULL,
 	NULL,
 	NULL)
@@ -318,8 +330,8 @@ VALUES(
 	9781408845660, N'Harry Potter and the Prisoner of Azkaban',
 	N'An extraordinary creative achievement by an extraordinary talent, Jim Kay''s inspired reimagining of J.K. Rowling''s classic series has captured a devoted following worldwide. This stunning new fully illustrated edition of Harry Potter and the Prisoner of Azkaban brings more breathtaking scenes and unforgettable characters – including Sirius Black, Remus Lupin and Professor Trelawney. With paint, pencil and pixels, Kay conjures the wizarding world as we have never seen it before. Fizzing with magic and brimming with humour, this full-colour edition will captivate fans and new readers alike as Harry, now in his third year at Hogwarts School of Witchcraft and Wizardry, faces Dementors, death omens and, of course, danger.',
 	'2017-10-03', 1, 1, 3, 334, 1,
-	N'https://images-na.ssl-images-amazon.com/images/I/617HC+dtBOL._AA218_.jpg',
-	NULL,
+	N'https://images-na.ssl-images-amazon.com/images/I/A1RGxzkX3ML.jpg',
+	N'https://images-na.ssl-images-amazon.com/images/I/41Lu0KOI3cL.jpg',
 	NULL,
 	NULL,
 	NULL)
@@ -334,11 +346,58 @@ VALUES(
 	NULL,
 	NULL)
 
+INSERT INTO TBUB_BOOKS(BOOK_ISBN, BOOK_TITLE, BOOK_DESCRIPTION, BOOK_PUBLICATION_DATE, BOOK_EDITION, BOOK_IS_AVAILABLE, BOOK_QUANTITY_AVAILABLE, BOOK_PAGES, PUBLISHER_ID, BOOK_IMG_URL_01, BOOK_IMG_URL_02, BOOK_IMG_URL_03, BOOK_IMG_URL_04, BOOK_IMG_URL_05)
+VALUES(
+	9789332543515, N'Artificial Intelligence : A Modern Approach',
+	N'Brand New. Artificial Intlelligence theory book.',
+	'2015-09-12', 3, 1, 5, 795, 2,
+	N'https://images-na.ssl-images-amazon.com/images/I/71MgQIMnAWL.jpg',
+	NULL,
+	NULL,
+	NULL,
+	NULL)
+
+INSERT INTO TBUB_BOOKS(BOOK_ISBN, BOOK_TITLE, BOOK_DESCRIPTION, BOOK_PUBLICATION_DATE, BOOK_EDITION, BOOK_IS_AVAILABLE, BOOK_QUANTITY_AVAILABLE, BOOK_PAGES, PUBLISHER_ID, BOOK_IMG_URL_01, BOOK_IMG_URL_02, BOOK_IMG_URL_03, BOOK_IMG_URL_04, BOOK_IMG_URL_05)
+VALUES(
+	9781466560017, N'Game Engine Architecture',
+	N'Hailed as a "must-have textbook" (CHOICE, January 2010), the first edition of Game Engine Architecture provided readers with a complete guide to the theory and practice of game engine software development. Updating the content to match today’s landscape of game engine architecture, this second edition continues to thoroughly cover the major components that make up a typical commercial game engine.',
+	'2014-08-15', 2, 1, 2, 1052, 3,
+	N'https://images-na.ssl-images-amazon.com/images/I/51P2wXledgL.jpg',
+	N'https://images-na.ssl-images-amazon.com/images/I/51wlTrj0q1L.jpg',
+	N'https://images-na.ssl-images-amazon.com/images/I/41GV0KOj4ZL.jpg',
+	NULL,
+	NULL)
+
+INSERT INTO TBUB_BOOKS(BOOK_ISBN, BOOK_TITLE, BOOK_DESCRIPTION, BOOK_PUBLICATION_DATE, BOOK_EDITION, BOOK_IS_AVAILABLE, BOOK_QUANTITY_AVAILABLE, BOOK_PAGES, PUBLISHER_ID, BOOK_IMG_URL_01, BOOK_IMG_URL_02, BOOK_IMG_URL_03, BOOK_IMG_URL_04, BOOK_IMG_URL_05)
+VALUES(
+	9780990582908, N'Game Programming Patterns',
+	N'The biggest challenge facing many game programmers is completing their game. Most game projects fizzle out, overwhelmed by the complexity of their own code. Game Programming Patterns tackles that exact problem. Based on years of experience in shipped AAA titles, this book collects proven patterns to untangle and optimize your game, organized as independent recipes so you can pick just the patterns you need.',
+	'2014-11-02', 1, 1, 1, 354, 4,
+	N'https://images-na.ssl-images-amazon.com/images/I/71Kfg2zTisL.jpg',
+	N'https://images-na.ssl-images-amazon.com/images/I/81NmSfv4NoL.jpg',
+	N'https://images-na.ssl-images-amazon.com/images/I/31mSaO0vaFL.jpg',
+	NULL,
+	NULL)
+
+INSERT INTO TBUB_BOOKS(BOOK_ISBN, BOOK_TITLE, BOOK_DESCRIPTION, BOOK_PUBLICATION_DATE, BOOK_EDITION, BOOK_IS_AVAILABLE, BOOK_QUANTITY_AVAILABLE, BOOK_PAGES, PUBLISHER_ID, BOOK_IMG_URL_01, BOOK_IMG_URL_02, BOOK_IMG_URL_03, BOOK_IMG_URL_04, BOOK_IMG_URL_05)
+VALUES(
+	9781435458864, N'Mathematics for 3D Game Programming and Computer Graphics',
+	N'This updated third edition illustrates the mathematical concepts that a game developer needs to develop 3D computer graphics and game engines at the professional level. It starts at a fairly basic level in areas such as vector geometry and linear algebra, and then progresses to more advanced topics in 3D programming such as illumination and visibility determination. Particular attention is given to derivations of key results, ensuring that the reader is not forced to endure gaps in the theory. The book assumes a working knowledge of trigonometry and calculus, but also includes sections that review the important tools used from these disciplines, such as trigonometric identities, differential equations, and Taylor series.',
+	'2011-07-02', 3, 1, 3, 624, 5,
+	N'https://images-na.ssl-images-amazon.com/images/I/61k9lBQjfWL.jpg',
+	NULL,
+	NULL,
+	NULL,
+	NULL)
 
 INSERT INTO TBUB_BOOKS_AUTHORS(BOOK_ISBN, AUTHOR_ID) VALUES(9781408845646, 1)
 INSERT INTO TBUB_BOOKS_AUTHORS(BOOK_ISBN, AUTHOR_ID) VALUES(9781408845653, 1)
 INSERT INTO TBUB_BOOKS_AUTHORS(BOOK_ISBN, AUTHOR_ID) VALUES(9781408845660, 1)
 INSERT INTO TBUB_BOOKS_AUTHORS(BOOK_ISBN, AUTHOR_ID) VALUES(9781408890769, 1)
+INSERT INTO TBUB_BOOKS_AUTHORS(BOOK_ISBN, AUTHOR_ID) VALUES(9789332543515, 2)
+INSERT INTO TBUB_BOOKS_AUTHORS(BOOK_ISBN, AUTHOR_ID) VALUES(9781466560017, 3)
+INSERT INTO TBUB_BOOKS_AUTHORS(BOOK_ISBN, AUTHOR_ID) VALUES(9780990582908, 4)
+INSERT INTO TBUB_BOOKS_AUTHORS(BOOK_ISBN, AUTHOR_ID) VALUES(9781435458864, 5)
 
 INSERT INTO TBUB_BOOKS_CATEGORIES(BOOK_ISBN, CATEGORY_ID) VALUES(9781408845646, 1)
 INSERT INTO TBUB_BOOKS_CATEGORIES(BOOK_ISBN, CATEGORY_ID) VALUES(9781408845646, 2)
@@ -348,6 +407,13 @@ INSERT INTO TBUB_BOOKS_CATEGORIES(BOOK_ISBN, CATEGORY_ID) VALUES(9781408845660, 
 INSERT INTO TBUB_BOOKS_CATEGORIES(BOOK_ISBN, CATEGORY_ID) VALUES(9781408845660, 2)
 INSERT INTO TBUB_BOOKS_CATEGORIES(BOOK_ISBN, CATEGORY_ID) VALUES(9781408890769, 1)
 INSERT INTO TBUB_BOOKS_CATEGORIES(BOOK_ISBN, CATEGORY_ID) VALUES(9781408890769, 2)
+INSERT INTO TBUB_BOOKS_CATEGORIES(BOOK_ISBN, CATEGORY_ID) VALUES(9789332543515, 3)
+INSERT INTO TBUB_BOOKS_CATEGORIES(BOOK_ISBN, CATEGORY_ID) VALUES(9789332543515, 4)
+INSERT INTO TBUB_BOOKS_CATEGORIES(BOOK_ISBN, CATEGORY_ID) VALUES(9781466560017, 3)
+INSERT INTO TBUB_BOOKS_CATEGORIES(BOOK_ISBN, CATEGORY_ID) VALUES(9781466560017, 5)
+INSERT INTO TBUB_BOOKS_CATEGORIES(BOOK_ISBN, CATEGORY_ID) VALUES(9781435458864, 3)
+INSERT INTO TBUB_BOOKS_CATEGORIES(BOOK_ISBN, CATEGORY_ID) VALUES(9781435458864, 5)
+INSERT INTO TBUB_BOOKS_CATEGORIES(BOOK_ISBN, CATEGORY_ID) VALUES(9781435458864, 6)
 
 /*
  * CREATE FUNCTIONS

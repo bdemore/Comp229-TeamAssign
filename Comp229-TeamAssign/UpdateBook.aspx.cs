@@ -7,11 +7,17 @@ namespace Comp229_TeamAssign
 {
     public partial class UpdateBook : System.Web.UI.Page
     {
+        // The message to be shown.
         protected string message = "";
 
         // The book controler
         private IBookController bookController = BookController.GetInstance();
 
+        /// <summary>
+        /// Loads the page and populates all the fields.
+        /// </summary>
+        /// <param name="sender">The event sender.</param>
+        /// <param name="e">The event arguments.</param>
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -57,6 +63,11 @@ namespace Comp229_TeamAssign
             }
         }
 
+        /// <summary>
+        /// Updates the book on the database.
+        /// </summary>
+        /// <param name="sender">The event sender.</param>
+        /// <param name="e">The event argument.s</param>
         protected void UpdateButton_Click(object sender, EventArgs e)
         {
             bookController.UpdateBook(
@@ -74,11 +85,30 @@ namespace Comp229_TeamAssign
                 string.IsNullOrEmpty(BookImageUrl04.Text) ? null : BookImageUrl04.Text,
                 string.IsNullOrEmpty(BookImageUrl05.Text) ? null : BookImageUrl05.Text
             );
+
+            ShowSuccessMessage(string.Format("The book {0} was successfully on the database.", BookTitleTextBox.Text));
         }
 
+        /// <summary>
+        /// Cancels the update operation.
+        /// </summary>
+        /// <param name="sender">The event sender.</param>
+        /// <param name="e">The event arguments.</param>
         protected void CancelButton_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("~/");
         }
+
+
+        /// <summary>
+        /// Shows to the user a success message.
+        /// </summary>
+        /// <param name="message">The error message to be shown.</param>
+        private void ShowSuccessMessage(string message)
+        {
+            this.message = string.Format("<hr/><b>{0}</b><hr/>", message);
+            SuccessPanel.CssClass = "register-success-message";
+        }
+
     }
 }

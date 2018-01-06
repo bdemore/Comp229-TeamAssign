@@ -13,13 +13,13 @@ namespace Comp229_TeamAssign {
     public partial class UpdateBook {
         
         /// <summary>
-        /// ErrorPanel control.
+        /// SuccessPanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel ErrorPanel;
+        protected global::System.Web.UI.WebControls.Panel SuccessPanel;
         
         /// <summary>
         /// TitleLabel control.
